@@ -80,45 +80,45 @@ namespace YTMDotNet.Forms {
             this.lblPythonInstall.AutoSize = true;
             this.lblPythonInstall.Location = new System.Drawing.Point(51, 70);
             this.lblPythonInstall.Name = "lblPythonInstall";
-            this.lblPythonInstall.Size = new System.Drawing.Size(70, 13);
+            this.lblPythonInstall.Size = new System.Drawing.Size(104, 13);
             this.lblPythonInstall.TabIndex = 4;
-            this.lblPythonInstall.Text = "Python Install";
+            this.lblPythonInstall.Text = "Python Install Check";
             // 
             // lblYTMAPI
             // 
             this.lblYTMAPI.AutoSize = true;
             this.lblYTMAPI.Location = new System.Drawing.Point(51, 110);
             this.lblYTMAPI.Name = "lblYTMAPI";
-            this.lblYTMAPI.Size = new System.Drawing.Size(65, 13);
+            this.lblYTMAPI.Size = new System.Drawing.Size(99, 13);
             this.lblYTMAPI.TabIndex = 5;
-            this.lblYTMAPI.Text = "YTmusicAPI";
+            this.lblYTMAPI.Text = "YTmusicAPI Check";
             // 
             // lblLogIn
             // 
             this.lblLogIn.AutoSize = true;
             this.lblLogIn.Location = new System.Drawing.Point(51, 190);
             this.lblLogIn.Name = "lblLogIn";
-            this.lblLogIn.Size = new System.Drawing.Size(55, 13);
+            this.lblLogIn.Size = new System.Drawing.Size(89, 13);
             this.lblLogIn.TabIndex = 6;
-            this.lblLogIn.Text = "Logged In";
+            this.lblLogIn.Text = "Logged In Check";
             // 
             // lblLogInConfig
             // 
             this.lblLogInConfig.AutoSize = true;
             this.lblLogInConfig.Location = new System.Drawing.Point(51, 150);
             this.lblLogInConfig.Name = "lblLogInConfig";
-            this.lblLogInConfig.Size = new System.Drawing.Size(70, 13);
+            this.lblLogInConfig.Size = new System.Drawing.Size(104, 13);
             this.lblLogInConfig.TabIndex = 12;
-            this.lblLogInConfig.Text = "Log In Config";
+            this.lblLogInConfig.Text = "Log In Config Check";
             // 
             // lblPythonConfig
             // 
             this.lblPythonConfig.AutoSize = true;
             this.lblPythonConfig.Location = new System.Drawing.Point(51, 30);
             this.lblPythonConfig.Name = "lblPythonConfig";
-            this.lblPythonConfig.Size = new System.Drawing.Size(73, 13);
+            this.lblPythonConfig.Size = new System.Drawing.Size(107, 13);
             this.lblPythonConfig.TabIndex = 10;
-            this.lblPythonConfig.Text = "Python Config";
+            this.lblPythonConfig.Text = "Python Config Check";
             // 
             // chkLogInConfig
             // 

@@ -62,6 +62,30 @@ namespace YTMDotNet.Forms {
                 }
             }
 
+            while (true) {
+                try {
+                    YTMAPICheck();
+                    chkYTMAPI.Checked = true;
+                } catch (PythonException ex) when (ex.Message == "No module named 'ytmusicapi'") {
+                    string pythonInstallFolder = Path.GetDirectoryName(Helpers.Settings.PythonDLL);
+
+                    switch (WalkmanLib.CustomMsgBox($"YTM API module not found in Python install{Environment.NewLine}\"{pythonInstallFolder}\"!",
+                                                                        "YTM API Initialization Error", null, "Install", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
+                        case "Install":
+                            InstallYTMAPI(pythonInstallFolder);
+                            continue;
+                        case "Cancel":
+                            Application.Exit();
+                            return;
+                    }
+                } catch (Exception ex) {
+                    WalkmanLib.ErrorDialog(ex);
+                    //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                    return;
+                }
+                break;
+            }
+
             //
 
             loadingTextUpdateCancel.Cancel();
@@ -81,6 +105,18 @@ namespace YTMDotNet.Forms {
         private void PythonInitAndCheck() {
             Runtime.PythonDLL = Helpers.Settings.PythonDLL;
             PythonEngine.Initialize();
+        }
+
+        private void YTMAPICheck() {
+            using (Py.GIL()) {
+                dynamic YTMusicAPI = Py.Import("ytmusicapi");
+                _ = YTMusicAPI.YTMusic;
+            }
+        }
+        private void InstallYTMAPI(string pythonInstallFolder) {
+            string pipPath = Path.Combine(pythonInstallFolder, "Scripts", "pip.exe");
+            System.Diagnostics.Process.Start("cmd.exe", $"/c \"{pipPath}\" install ytmusicapi & pause");
+            MessageBox.Show("Select OK when install is complete", "Installing YTM API", MessageBoxButtons.OK);
         }
     }
 }
