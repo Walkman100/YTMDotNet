@@ -16,7 +16,6 @@ namespace YTMDotNet.Forms {
         }
 
         private CancellationTokenSource loadingTextUpdateCancel;
-        private string PythonDLL;
         private void Startup_Shown(object sender, EventArgs e) {
             loadingTextUpdateCancel = new CancellationTokenSource();
             _ = Task.Run(() => {
@@ -29,15 +28,15 @@ namespace YTMDotNet.Forms {
                 }
             });
 
-            // load settings
+            Helpers.Settings.Init();
 
-            while (!File.Exists(PythonDLL)) {
+            while (!File.Exists(Helpers.Settings.PythonDLL)) {
                 string tmp = GetPythonInstall();
                 if (tmp == null) {
                     Application.Exit();
                     return;
                 }
-                PythonDLL = tmp;
+                Helpers.Settings.PythonDLL = tmp;
             }
             chkPythonConfig.Checked = true;
 
@@ -48,7 +47,7 @@ namespace YTMDotNet.Forms {
                 switch (WalkmanLib.CustomMsgBox($"Error Loading Python!{Environment.NewLine}{Environment.NewLine}{ex.Message}{Environment.NewLine}{Environment.NewLine}Selecting a new path requires a restart.",
                                                 "Python Initialization Error", "Restart Application", "Show Full Error", "Cancel", MessageBoxIcon.Error, ownerForm: this)) {
                     case "Restart Application":
-                        PythonDLL = null; // reset path & save so it can be selected on next startup
+                        Helpers.Settings.PythonDLL = null; // reset path & save so it can be selected on next startup
                         Application.Restart();
                         return;
 
@@ -80,7 +79,7 @@ namespace YTMDotNet.Forms {
             return selectPythonDLL.ShowDialog() == DialogResult.Cancel ? null : selectPythonDLL.FileName;
         }
         private void PythonInitAndCheck() {
-            Runtime.PythonDLL = PythonDLL;
+            Runtime.PythonDLL = Helpers.Settings.PythonDLL;
             PythonEngine.Initialize();
         }
     }
