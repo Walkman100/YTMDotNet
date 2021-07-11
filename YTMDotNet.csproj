@@ -39,11 +39,11 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Forms\Startup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Startup.Designer.cs">
+      <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
