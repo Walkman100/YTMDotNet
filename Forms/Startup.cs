@@ -16,7 +16,10 @@ namespace YTMDotNet.Forms {
         }
 
         private CancellationTokenSource loadingTextUpdateCancel;
+        private string HeadersPath;
         private void Startup_Shown(object sender, EventArgs e) {
+            HeadersPath = Path.Combine(Environment.GetEnvironmentVariable("AppData"), "WalkmanOSS", "YTMDotNetHeaders.json");
+
             loadingTextUpdateCancel = new CancellationTokenSource();
             _ = Task.Run(() => {
                 while (!loadingTextUpdateCancel.IsCancellationRequested) {
@@ -86,7 +89,62 @@ namespace YTMDotNet.Forms {
                 break;
             }
 
-            //
+            while (true) {
+                if (!File.Exists(HeadersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(HeadersPath))) {
+                    HeadersInput inputDialog = new(this) {
+                        Text = "Authentication",
+                        MainInstruction = "Paste Headers",
+                        Content = "See ytmusicapi.readthedocs.io/en/latest/setup.html"
+                    };
+                    inputDialog.SetContentLink(4, 999, "https://ytmusicapi.readthedocs.io/en/latest/setup.html");
+                    WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, inputDialog);
+
+                    if (inputDialog.ShowDialog() == DialogResult.Cancel) {
+                        Application.Exit();
+                        return;
+                    }
+                    string headerInput = inputDialog.Input.Replace("\r\n", "\n");
+
+                    try {
+                        YTMASetup(headerInput);
+                    } catch (PythonException ex) {
+                        WalkmanLib.ErrorDialog(ex);
+                        continue;
+                    } catch (Exception ex) {
+                        WalkmanLib.ErrorDialog(ex);
+                        //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                        return;
+                    }
+                }
+                chkLogInConfig.Checked = true;
+
+                try {
+                    YTMALoginCheck();
+                    chkLogIn.Checked = true;
+                } catch (PythonException ex) {
+                    switch (WalkmanLib.CustomMsgBox($"Login Failed!{Environment.NewLine}{Environment.NewLine}{ex.Message}",
+                                                    "YTM API Login Error", "Try New Headers", "Show Full Error", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
+                        case "Try New Headers":
+                            File.WriteAllText(HeadersPath, "");
+                            chkLogInConfig.Checked = false;
+                            continue;
+
+                        case "Show Full Error":
+                            WalkmanLib.ErrorDialog(ex, showMsgBox: false);
+                            //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                            return;
+
+                        case "Cancel":
+                            Application.Exit();
+                            return;
+                    }
+                } catch (Exception ex) {
+                    WalkmanLib.ErrorDialog(ex);
+                    //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                    return;
+                }
+                break;
+            }
 
             loadingTextUpdateCancel.Cancel();
             lblLoading.Text = "Switching Windows...";
@@ -117,6 +175,22 @@ namespace YTMDotNet.Forms {
             string pipPath = Path.Combine(pythonInstallFolder, "Scripts", "pip.exe");
             System.Diagnostics.Process.Start("cmd.exe", $"/c \"{pipPath}\" install ytmusicapi & pause");
             MessageBox.Show("Select OK when install is complete", "Installing YTM API", MessageBoxButtons.OK);
+        }
+
+        private void YTMASetup(string headersInput) {
+            using (Py.GIL()) {
+                dynamic YTMusicAPI = Py.Import("ytmusicapi");
+                dynamic YTMusic = YTMusicAPI.YTMusic;
+                YTMusic.setup(filepath: HeadersPath, headers_raw: headersInput);
+            }
+        }
+        private void YTMALoginCheck() {
+            using (Py.GIL()) {
+                dynamic YTMusicAPI = Py.Import("ytmusicapi");
+                dynamic YTMusic = YTMusicAPI.YTMusic(HeadersPath);
+
+                dynamic search_results = YTMusic.search("Oasis Wonderwall");
+            }
         }
     }
 }

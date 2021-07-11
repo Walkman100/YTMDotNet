@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\HeadersInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HeadersInput.Designer.cs">
+      <DependentUpon>HeadersInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Startup.cs">
       <SubType>Form</SubType>
     </Compile>
