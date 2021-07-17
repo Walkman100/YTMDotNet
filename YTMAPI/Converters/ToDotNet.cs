@@ -2,6 +2,11 @@ using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class ToDotNet {
+        public static IEnumerable<Dictionary<string, object>> FromSearchResults(dynamic ytmSearchResults) {
+            foreach (dynamic searchResult in ytmSearchResults)
+                yield return convertNamedDict(searchResult);
+        }
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))
