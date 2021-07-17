@@ -55,6 +55,15 @@
       <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="YTMAPI\Models\Item.cs" />
+    <Compile Include="YTMAPI\Models\ItemBasic.cs" />
+    <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
+    <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
+    <Compile Include="YTMAPI\Models\SearchResult.cs" />
+    <Compile Include="YTMAPI\Models\SearchResults\Playlist.cs" />
+    <Compile Include="YTMAPI\Models\Thumbnail.cs" />
+    <Compile Include="YTMAPI\Models\SearchResults\Track.cs" />
+    <Compile Include="YTMAPI\Models\SearchResults\Video.cs" />
     <Compile Include="Properties\Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WalkmanLib\CustomMsgBox.cs">
