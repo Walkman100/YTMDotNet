@@ -17,7 +17,9 @@ namespace YTMDotNet.Forms {
 
         private CancellationTokenSource loadingTextUpdateCancel;
         private string HeadersPath;
-        private void Startup_Shown(object sender, EventArgs e) {
+        private void Startup_Shown(object _, EventArgs __) {
+            Application.DoEvents(); // ensure UI has been drawn
+
             HeadersPath = Path.Combine(Environment.GetEnvironmentVariable("AppData"), "WalkmanOSS", "YTMDotNetHeaders.json");
 
             loadingTextUpdateCancel = new CancellationTokenSource();
