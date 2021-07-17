@@ -16,11 +16,8 @@ namespace YTMDotNet.Forms {
         }
 
         private CancellationTokenSource loadingTextUpdateCancel;
-        private string HeadersPath;
         private void Startup_Shown(object _, EventArgs __) {
             Application.DoEvents(); // ensure UI has been drawn
-
-            HeadersPath = Path.Combine(Environment.GetEnvironmentVariable("AppData"), "WalkmanOSS", "YTMDotNetHeaders.json");
 
             loadingTextUpdateCancel = new CancellationTokenSource();
             _ = Task.Run(() => {
@@ -33,7 +30,8 @@ namespace YTMDotNet.Forms {
                 }
             });
 
-            Helpers.Settings.Init();
+            if (Helpers.Settings.Init() == false)
+                Helpers.Settings.HeadersPath = Path.Combine(Environment.GetEnvironmentVariable("AppData"), "WalkmanOSS", "YTMDotNetHeaders.json");
 
             while (!File.Exists(Helpers.Settings.PythonDLL)) {
                 string tmp = GetPythonInstall();
@@ -92,7 +90,7 @@ namespace YTMDotNet.Forms {
             }
 
             while (true) {
-                if (!File.Exists(HeadersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(HeadersPath))) {
+                if (!File.Exists(Helpers.Settings.HeadersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(Helpers.Settings.HeadersPath))) {
                     HeadersInput inputDialog = new(this) {
                         Text = "Authentication",
                         MainInstruction = "Paste Headers",
@@ -126,7 +124,7 @@ namespace YTMDotNet.Forms {
                     switch (WalkmanLib.CustomMsgBox($"Login Failed!{Environment.NewLine}{Environment.NewLine}{ex.Message}",
                                                     "YTM API Login Error", "Try New Headers", "Show Full Error", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
                         case "Try New Headers":
-                            File.WriteAllText(HeadersPath, "");
+                            File.WriteAllText(Helpers.Settings.HeadersPath, "");
                             chkLogInConfig.Checked = false;
                             continue;
 
@@ -184,13 +182,13 @@ namespace YTMDotNet.Forms {
             using (Py.GIL()) {
                 dynamic YTMusicAPI = Py.Import("ytmusicapi");
                 dynamic YTMusic = YTMusicAPI.YTMusic;
-                YTMusic.setup(filepath: HeadersPath, headers_raw: headersInput);
+                YTMusic.setup(filepath: Helpers.Settings.HeadersPath, headers_raw: headersInput);
             }
         }
         private void YTMALoginCheck() {
             using (Py.GIL()) {
                 dynamic YTMusicAPI = Py.Import("ytmusicapi");
-                dynamic YTMusic = YTMusicAPI.YTMusic(HeadersPath);
+                dynamic YTMusic = YTMusicAPI.YTMusic(Helpers.Settings.HeadersPath);
 
                 _ = YTMusic.search("Oasis Wonderwall");
             }

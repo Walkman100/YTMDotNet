@@ -38,6 +38,14 @@ namespace YTMDotNet.Helpers {
             }
         }
 
+        private static string headersPath;
+        public static string HeadersPath {
+            get => headersPath;
+            set {
+                headersPath = value;
+                SaveSettings();
+            }
+        }
         private static string pythonDLL;
         public static string PythonDLL {
             get => pythonDLL;
@@ -59,6 +67,10 @@ namespace YTMDotNet.Helpers {
                     if (reader.Read() && reader.IsStartElement() && reader.Name == "Settings" && reader.Read()) {
                         while (reader.IsStartElement()) {
                             switch (reader.Name) {
+                                case "HeadersPath":
+                                    reader.Read();
+                                    HeadersPath = reader.Value;
+                                    break;
                                 case "PythonDLL":
                                     reader.Read();
                                     PythonDLL = reader.Value;
@@ -79,6 +91,7 @@ namespace YTMDotNet.Helpers {
                 writer.WriteStartElement("YTMDotNet");
 
                 writer.WriteStartElement("Settings");
+                writer.WriteElementString("HeadersPath", HeadersPath);
                 writer.WriteElementString("PythonDLL", PythonDLL);
                 writer.WriteEndElement(); // Settings
 
