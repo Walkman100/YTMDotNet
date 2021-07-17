@@ -26,7 +26,7 @@ namespace YTMDotNet.Forms {
             lblContent.LinkArea = new LinkArea(start, length);
             url = targetUrl;
         }
-        private void lblContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+        private void lblContent_LinkClicked(object _, LinkLabelLinkClickedEventArgs __) {
             System.Diagnostics.Process.Start(url);
         }
 
