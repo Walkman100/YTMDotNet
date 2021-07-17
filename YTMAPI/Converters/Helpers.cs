@@ -8,6 +8,10 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static TEnum EnumParse<TEnum>(string value, bool ignoreCase = true) where TEnum : struct =>
             (TEnum)Enum.Parse(typeof(TEnum), value, ignoreCase);
 
+        // get default value instead of exception on missing key: https://stackoverflow.com/a/33223183/2999220
+        public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue = default) =>
+            dict.TryGetValue(key, out TValue value) ? value : defaultValue;
+
         /// <summary>Duplicate of the <see cref="int.TryParse(string, out int)"/> method except with <see cref="NumberFormatInfo.InvariantInfo"/> instead of <see cref="NumberFormatInfo.CurrentInfo"/></summary>
         public static bool TryParse(string s, out int result) =>
             int.TryParse(s, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out result);

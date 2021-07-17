@@ -15,6 +15,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 yield return convertNamedDict(album);
         }
 
+        public static Dictionary<string, object> FromGetUser(dynamic ytmGetUser) => 
+            convertNamedDict(ytmGetUser);
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))
