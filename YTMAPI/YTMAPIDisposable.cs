@@ -3,7 +3,8 @@ using Python.Runtime;
 
 namespace YTMDotNet.YTMAPI {
     static class PyYTMAPI {
-        public static YTMAPIDisposable Get() =>
+        public readonly static string YTMAPIModuleName = "ytmusicapi";
+        internal static YTMAPIDisposable Get() =>
             new YTMAPIDisposable();
     }
 
@@ -16,7 +17,7 @@ namespace YTMDotNet.YTMAPI {
         internal YTMAPIDisposable() {
             state = Py.GIL();
 
-            dynamic YTMusicAPI = Py.Import("ytmusicapi");
+            dynamic YTMusicAPI = Py.Import(PyYTMAPI.YTMAPIModuleName);
             API = YTMusicAPI.YTMusic(Helpers.Settings.HeadersPath);
         }
 

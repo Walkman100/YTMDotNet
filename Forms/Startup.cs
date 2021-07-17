@@ -69,7 +69,7 @@ namespace YTMDotNet.Forms {
                 try {
                     YTMAPICheck();
                     chkYTMAPI.Checked = true;
-                } catch (PythonException ex) when (ex.Message == "No module named 'ytmusicapi'") {
+                } catch (PythonException ex) when (ex.Message == $"No module named '{YTMAPI.PyYTMAPI.YTMAPIModuleName}'") {
                     string pythonInstallFolder = Path.GetDirectoryName(Helpers.Settings.PythonDLL);
 
                     switch (WalkmanLib.CustomMsgBox($"YTM API module not found in Python install{Environment.NewLine}\"{pythonInstallFolder}\"!",
@@ -166,13 +166,13 @@ namespace YTMDotNet.Forms {
 
         private void YTMAPICheck() {
             using (Py.GIL()) {
-                dynamic YTMusicAPI = Py.Import("ytmusicapi");
+                dynamic YTMusicAPI = Py.Import(YTMAPI.PyYTMAPI.YTMAPIModuleName);
                 _ = YTMusicAPI.YTMusic;
             }
         }
         private void InstallYTMAPI(string pythonInstallFolder) {
             string pipPath = Path.Combine(pythonInstallFolder, "Scripts", "pip.exe");
-            System.Diagnostics.Process.Start("cmd.exe", $"/c \"{pipPath}\" install ytmusicapi & pause");
+            System.Diagnostics.Process.Start("cmd.exe", $"/c \"{pipPath}\" install {YTMAPI.PyYTMAPI.YTMAPIModuleName} & pause");
             MessageBox.Show("Select OK when install is complete", "Installing YTM API", MessageBoxButtons.OK);
         }
 
@@ -180,17 +180,14 @@ namespace YTMDotNet.Forms {
             headersInput = headersInput.Replace("\r\n", "\n");
 
             using (Py.GIL()) {
-                dynamic YTMusicAPI = Py.Import("ytmusicapi");
+                dynamic YTMusicAPI = Py.Import(YTMAPI.PyYTMAPI.YTMAPIModuleName);
                 dynamic YTMusic = YTMusicAPI.YTMusic;
                 YTMusic.setup(filepath: Helpers.Settings.HeadersPath, headers_raw: headersInput);
             }
         }
         private void YTMALoginCheck() {
-            using (Py.GIL()) {
-                dynamic YTMusicAPI = Py.Import("ytmusicapi");
-                dynamic YTMusic = YTMusicAPI.YTMusic(Helpers.Settings.HeadersPath);
-
-                _ = YTMusic.search("Oasis Wonderwall");
+            using (var YTM = YTMAPI.PyYTMAPI.Get()) {
+                _ = YTM.API.search("Oasis Wonderwall");
             }
         }
     }
