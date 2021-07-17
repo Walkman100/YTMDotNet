@@ -11,11 +11,4 @@ namespace YTMDotNet.YTMAPI.Models.SearchResults {
 
         public List<ItemBasic> Artists;
     }
-
-    enum AlbumType {
-        None,
-        Album,
-        EP,
-        Single
-    }
 }

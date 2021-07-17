@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
+    <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToSearchResults.cs" />

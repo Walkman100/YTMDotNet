@@ -10,6 +10,11 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static Dictionary<string, object> FromGetArtist(dynamic ytmGetArtist) =>
             convertNamedDict(ytmGetArtist);
 
+        public static IEnumerable<Dictionary<string, object>> FromGetArtistAlbums(dynamic ytmGetArtistAlbums) {
+            foreach (dynamic album in ytmGetArtistAlbums)
+                yield return convertNamedDict(album);
+        }
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))

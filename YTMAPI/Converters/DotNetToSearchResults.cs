@@ -45,7 +45,7 @@ namespace YTMDotNet.YTMAPI.Converters {
         private static Models.SearchResults.Album GetAlbum(Dictionary<string, object> input) =>
             new Models.SearchResults.Album() {
                 Title = input["title"] as string,
-                Type = Helpers.EnumParse<Models.SearchResults.AlbumType>(input["type"] as string),
+                Type = Helpers.EnumParse<AlbumType>(input["type"] as string),
                 Duration = input["duration"] as string,
                 Year = input["year"] as int?,
                 BrowseID = input["browseId"] as string,
