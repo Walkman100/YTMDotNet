@@ -18,6 +18,11 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static Dictionary<string, object> FromGetUser(dynamic ytmGetUser) => 
             convertNamedDict(ytmGetUser);
 
+        public static IEnumerable<Dictionary<string, object>> FromGetUserPlaylists(dynamic ytmGetUserPlaylists) {
+            foreach (dynamic playlist in ytmGetUserPlaylists)
+                yield return convertNamedDict(playlist);
+        }
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))
