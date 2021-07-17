@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="YTMAPI\Converters\DotNetToAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="WalkmanLib\WalkmanLibDotNet.cs" />
     <Compile Include="WalkmanLib\WalkmanLibTheming.cs" />
     <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
+    <Compile Include="YTMAPI\Models\Track.cs" />
     <Compile Include="YTMAPI\Models\User.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
