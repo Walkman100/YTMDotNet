@@ -23,6 +23,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 yield return convertNamedDict(playlist);
         }
 
+        public static Dictionary<string, object> FromGetAlbum(dynamic ytmGetAlbum) =>
+            convertNamedDict(ytmGetAlbum);
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))

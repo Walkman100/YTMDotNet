@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="YTMAPI\Converters\DotNetToAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
+    <Compile Include="YTMAPI\Models\Album.cs" />
     <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
