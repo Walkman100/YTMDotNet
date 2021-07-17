@@ -103,10 +103,9 @@ namespace YTMDotNet.Forms {
                         Application.Exit();
                         return;
                     }
-                    string headerInput = inputDialog.Input.Replace("\r\n", "\n");
 
                     try {
-                        YTMASetup(headerInput);
+                        YTMASetup(inputDialog.Input);
                     } catch (PythonException ex) {
                         WalkmanLib.ErrorDialog(ex);
                         continue;
@@ -178,6 +177,8 @@ namespace YTMDotNet.Forms {
         }
 
         private void YTMASetup(string headersInput) {
+            headersInput = headersInput.Replace("\r\n", "\n");
+
             using (Py.GIL()) {
                 dynamic YTMusicAPI = Py.Import("ytmusicapi");
                 dynamic YTMusic = YTMusicAPI.YTMusic;
@@ -189,7 +190,7 @@ namespace YTMDotNet.Forms {
                 dynamic YTMusicAPI = Py.Import("ytmusicapi");
                 dynamic YTMusic = YTMusicAPI.YTMusic(HeadersPath);
 
-                dynamic search_results = YTMusic.search("Oasis Wonderwall");
+                _ = YTMusic.search("Oasis Wonderwall");
             }
         }
     }
