@@ -90,6 +90,7 @@
     <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
     <Compile Include="YTMAPI\Models\Track.cs" />
     <Compile Include="YTMAPI\Models\User.cs" />
+    <Compile Include="YTMAPI\Search.cs" />
     <Compile Include="YTMAPI\YTMAPIDisposable.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
