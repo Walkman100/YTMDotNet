@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="YTMAPI\Converters\Helpers.cs" />
+    <Compile Include="YTMAPI\Converters\ToDotNet.cs" />
     <Compile Include="Forms\HeadersInput.cs">
       <SubType>Form</SubType>
     </Compile>
