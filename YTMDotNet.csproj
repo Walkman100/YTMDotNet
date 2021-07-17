@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToSearchResults.cs" />
     <Compile Include="YTMAPI\Converters\ToDotNet.cs" />
@@ -57,8 +58,10 @@
       <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="YTMAPI\Models\Artist.cs" />
     <Compile Include="YTMAPI\Models\Item.cs" />
     <Compile Include="YTMAPI\Models\ItemBasic.cs" />
+    <Compile Include="YTMAPI\Models\LikeStatus.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
     <Compile Include="YTMAPI\Models\SearchResult.cs" />

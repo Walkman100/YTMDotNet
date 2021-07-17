@@ -7,6 +7,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 yield return convertNamedDict(searchResult);
         }
 
+        public static Dictionary<string, object> FromGetArtist(dynamic ytmGetArtist) =>
+            convertNamedDict(ytmGetArtist);
+
         #region Private Converters
         private static object tryAll(dynamic value) {
             if (tryBasic(value.ToString(), out object result1))
