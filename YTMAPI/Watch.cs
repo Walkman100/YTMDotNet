@@ -19,11 +19,22 @@ namespace YTMDotNet.YTMAPI {
             using (var YTM = PyYTMAPI.Get()) {
                 get_results = YTM.API.get_watch_playlist(videoID, playlistID, limit, _params);
             }
-            System.Windows.Forms.MessageBox.Show(get_results.ToString());
-
             Dictionary<string, object> playlist = ToDotNet.FromDict(get_results);
-            System.Windows.Forms.MessageBox.Show(playlist.ToString());
+            return DotNetToWatchPlaylist.Get(playlist);
+        }
 
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_watch_playlist_shuffle
+        /// <summary>Shuffle any playlist</summary>
+        /// <param name="videoID">Optional video id of the first video in the shuffled playlist</param>
+        /// <param name="playlistID">Playlist id</param>
+        /// <param name="limit">The number of watch playlist items to return</param>
+        /// <returns></returns>
+        public static WatchPlaylist GetWatchPlaylistShuffle(string videoID = null, string playlistID = null, int limit = 50) {
+            dynamic get_results;
+            using (var YTM = PyYTMAPI.Get()) {
+                get_results = YTM.API.get_watch_playlist_shuffle(videoID, playlistID, limit);
+            }
+            Dictionary<string, object> playlist = ToDotNet.FromDict(get_results);
             return DotNetToWatchPlaylist.Get(playlist);
         }
     }
