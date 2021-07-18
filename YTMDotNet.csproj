@@ -46,6 +46,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToWatchPlaylist.cs" />
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
     <Compile Include="YTMAPI\Models\Album.cs" />
     <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="YTMAPI\Models\ItemBasic.cs" />
     <Compile Include="YTMAPI\Models\LikeStatus.cs" />
     <Compile Include="YTMAPI\Models\Lyrics.cs" />
+    <Compile Include="YTMAPI\Models\WatchPlaylist.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
     <Compile Include="YTMAPI\Models\SearchResult.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="YTMAPI\Models\Track.cs" />
     <Compile Include="YTMAPI\Models\User.cs" />
     <Compile Include="YTMAPI\Search.cs" />
+    <Compile Include="YTMAPI\Watch.cs" />
     <Compile Include="YTMAPI\YTMAPIDisposable.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
