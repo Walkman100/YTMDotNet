@@ -15,7 +15,7 @@ namespace YTMDotNet.YTMAPI {
             using (var YTM = PyYTMAPI.Get()) {
                 search_results = YTM.API.search(query: query, filter: filter, limit: limit, ignore_spelling: ignore_spelling);
             }
-            IEnumerable<Dictionary<string, object>> list = ToDotNet.FromSearchResults(search_results);
+            IEnumerable<Dictionary<string, object>> list = ToDotNet.FromList(search_results);
             return DotNetToSearchResults.Get(list);
         }
     }

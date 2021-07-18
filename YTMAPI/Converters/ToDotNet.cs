@@ -2,32 +2,13 @@ using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class ToDotNet {
-        public static IEnumerable<Dictionary<string, object>> FromSearchResults(dynamic ytmSearchResults) {
-            foreach (dynamic searchResult in ytmSearchResults)
-                yield return convertNamedDict(searchResult);
+        public static Dictionary<string, object> FromDict(dynamic ytmDict) =>
+            convertNamedDict(ytmDict);
+
+        public static IEnumerable<Dictionary<string, object>> FromList(dynamic ytmList) {
+            foreach (dynamic item in ytmList)
+                yield return convertNamedDict(item);
         }
-
-        public static Dictionary<string, object> FromGetArtist(dynamic ytmGetArtist) =>
-            convertNamedDict(ytmGetArtist);
-
-        public static IEnumerable<Dictionary<string, object>> FromGetArtistAlbums(dynamic ytmGetArtistAlbums) {
-            foreach (dynamic album in ytmGetArtistAlbums)
-                yield return convertNamedDict(album);
-        }
-
-        public static Dictionary<string, object> FromGetUser(dynamic ytmGetUser) => 
-            convertNamedDict(ytmGetUser);
-
-        public static IEnumerable<Dictionary<string, object>> FromGetUserPlaylists(dynamic ytmGetUserPlaylists) {
-            foreach (dynamic playlist in ytmGetUserPlaylists)
-                yield return convertNamedDict(playlist);
-        }
-
-        public static Dictionary<string, object> FromGetAlbum(dynamic ytmGetAlbum) =>
-            convertNamedDict(ytmGetAlbum);
-
-        internal static Dictionary<string, object> FromGetSong(dynamic ytmGetSong) =>
-            convertNamedDict(ytmGetSong);
 
         #region Private Converters
         private static object tryAll(dynamic value) {

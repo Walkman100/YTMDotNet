@@ -42,12 +42,14 @@
   <ItemGroup>
     <Compile Include="YTMAPI\Converters\DotNetToAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\Helpers.cs" />
     <Compile Include="YTMAPI\Models\Album.cs" />
     <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
+    <Compile Include="YTMAPI\Browsing.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToSearchResults.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="YTMAPI\Models\Item.cs" />
     <Compile Include="YTMAPI\Models\ItemBasic.cs" />
     <Compile Include="YTMAPI\Models\LikeStatus.cs" />
+    <Compile Include="YTMAPI\Models\Lyrics.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
     <Compile Include="YTMAPI\Models\SearchResult.cs" />
