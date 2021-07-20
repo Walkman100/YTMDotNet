@@ -1,5 +1,5 @@
 namespace YTMDotNet.YTMAPI.Models {
-    class Playlist : Item {
+    class LibraryPlaylist : Item {
         public int? Count;
     }
 }

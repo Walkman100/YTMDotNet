@@ -12,7 +12,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 DurationMS = (int)input["durationMs"],
                 Description = input["description"] as string,
                 ReleaseDate = GetReleaseDate(input["releaseDate"] as Dictionary<string, object>),
-                Songs = GetSongs(input["tracks"] as List<object>),
+                Tracks = GetTracks(input["tracks"] as List<object>),
                 Artists = DotNetToGeneral.GetSimpleItems(input["artist"] as List<object>),
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
             };
@@ -23,9 +23,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Month = (int)input["month"],
                 Day = (int)input["day"]
             };
-        private static List<AlbumSong> GetSongs(List<object> input) =>
+        private static List<AlbumTrack> GetTracks(List<object> input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new AlbumSong() {
+                dict => new AlbumTrack() {
                     Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
                     Index = (int)dict["index"],

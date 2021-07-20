@@ -8,7 +8,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public string Description;
 
         public List<ItemBasic> Artists;
-        public List<AlbumSong> Songs;
+        public List<AlbumTrack> Tracks;
     }
 
     class AlbumReleaseDate {
@@ -17,7 +17,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public int Day;
     }
 
-    class AlbumSong : Item {
+    class AlbumTrack : Item {
         public int Index;
         public string Artists;
         public int LengthMS;

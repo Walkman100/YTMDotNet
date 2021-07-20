@@ -10,7 +10,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public string ShuffleID;
         public string RadioID;
 
-        public string SongBrowseID;
+        public string TrackBrowseID;
         public string VideoBrowseID;
         public string RelatedBrowseID;
         public string AlbumBrowseID;

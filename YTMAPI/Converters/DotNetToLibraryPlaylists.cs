@@ -4,11 +4,11 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToLibraryPlaylists {
-        public static List<Playlist> Get(IEnumerable<Dictionary<string, object>> input) =>
+        public static List<LibraryPlaylist> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetPlaylist).ToList();
 
-        private static Playlist GetPlaylist(Dictionary<string, object> input) =>
-            new Playlist() {
+        private static LibraryPlaylist GetPlaylist(Dictionary<string, object> input) =>
+            new LibraryPlaylist() {
                 Title = input["title"] as string,
                 BrowseID = input["playlistId"] as string,
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),

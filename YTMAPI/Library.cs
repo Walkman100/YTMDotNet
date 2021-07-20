@@ -8,7 +8,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Retrieves the playlists in the user’s library.</summary>
         /// <param name="limit">Number of playlists to retrieve</param>
         /// <returns></returns>
-        public static List<Playlist> GetPlaylists(int limit = 25) {
+        public static List<LibraryPlaylist> GetPlaylists(int limit = 25) {
             dynamic get_results;
             using (var YTM = PyYTMAPI.Get()) {
                 get_results = YTM.API.get_library_playlists(limit);

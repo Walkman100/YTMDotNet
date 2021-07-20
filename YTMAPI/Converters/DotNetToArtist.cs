@@ -15,7 +15,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Subscribers = input["subscribers"] as string,
                 Subscribed = (bool)input["subscribed"],
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
-                SongBrowseID = (input["songs"] as Dictionary<string, object>)["browseId"] as string,
+                TrackBrowseID = (input["songs"] as Dictionary<string, object>)["browseId"] as string,
                 VideoBrowseID = (input["videos"] as Dictionary<string, object>)["browseId"] as string,
                 RelatedBrowseID = (input["related"] as Dictionary<string, object>)["browseId"] as string,
                 AlbumBrowseID = (input["albums"] as Dictionary<string, object>)["browseId"] as string,
