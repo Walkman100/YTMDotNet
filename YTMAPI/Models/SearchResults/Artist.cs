@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace YTMDotNet.YTMAPI.Models.SearchResults {
     class Artist : SearchResult {
         public Artist() => ItemType = ItemType.Artist;
