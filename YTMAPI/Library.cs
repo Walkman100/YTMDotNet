@@ -59,5 +59,18 @@ namespace YTMDotNet.YTMAPI {
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
             return DotNetToLibraryAlbums.Get(albums);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_liked_songs
+        /// <summary>Gets playlist items for the 'Liked Songs' playlist</summary>
+        /// <param name="limit">How many items to return.</param>
+        /// <returns></returns>
+        public static Playlist GetLikedTracks(int limit = 100) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.get_liked_songs(limit: limit);
+            }
+            Dictionary<string, object> tracks = ToDotNet.FromDict(get_results);
+            return DotNetToLibraryLikedTracks.Get(tracks);
+        }
     }
 }
