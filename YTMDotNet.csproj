@@ -44,6 +44,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryAlbums.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryArtists.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToLibraryHistory.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryLikedTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
@@ -75,6 +76,7 @@
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="YTMAPI\Models\Artist.cs" />
+    <Compile Include="YTMAPI\Models\HistoryTrack.cs" />
     <Compile Include="YTMAPI\Models\Item.cs" />
     <Compile Include="YTMAPI\Models\ItemBasic.cs" />
     <Compile Include="YTMAPI\Models\LibraryAlbum.cs" />

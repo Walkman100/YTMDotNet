@@ -72,5 +72,17 @@ namespace YTMDotNet.YTMAPI {
             Dictionary<string, object> tracks = ToDotNet.FromDict(get_results);
             return DotNetToLibraryLikedTracks.Get(tracks);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_history
+        /// <summary>Gets your play history in reverse chronological order</summary>
+        /// <returns></returns>
+        public static List<HistoryTrack> GetHistory() {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.get_history();
+            }
+            IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
+            return DotNetToLibraryHistory.Get(tracks);
+        }
     }
 }
