@@ -16,7 +16,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static WatchPlaylist GetWatchPlaylist(string videoID = null, string playlistID = null, int limit = 25, string _params = null) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_watch_playlist(videoID, playlistID, limit, _params);
             }
             Dictionary<string, object> playlist = ToDotNet.FromDict(get_results);
@@ -31,7 +31,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static WatchPlaylist GetWatchPlaylistShuffle(string videoID = null, string playlistID = null, int limit = 50) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_watch_playlist_shuffle(videoID, playlistID, limit);
             }
             Dictionary<string, object> playlist = ToDotNet.FromDict(get_results);

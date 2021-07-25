@@ -186,7 +186,7 @@ namespace YTMDotNet.Forms {
             }
         }
         private void YTMALoginCheck() {
-            using (var YTM = YTMAPI.PyYTMAPI.Get()) {
+            using (var YTM = new YTMAPI.PyYTMAPI()) {
                 _ = YTM.API.search("Oasis Wonderwall");
             }
         }

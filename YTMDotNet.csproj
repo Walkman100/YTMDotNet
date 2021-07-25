@@ -106,7 +106,7 @@
     <Compile Include="YTMAPI\Models\User.cs" />
     <Compile Include="YTMAPI\Search.cs" />
     <Compile Include="YTMAPI\Watch.cs" />
-    <Compile Include="YTMAPI\YTMAPIDisposable.cs" />
+    <Compile Include="YTMAPI\PyYTMAPI.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

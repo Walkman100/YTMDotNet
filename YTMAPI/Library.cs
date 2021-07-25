@@ -10,7 +10,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<LibraryPlaylist> GetPlaylists(int limit = 25) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_playlists(limit);
             }
             IEnumerable<Dictionary<string, object>> playlists = ToDotNet.FromList(get_results);
@@ -25,7 +25,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<LibraryTrack> GetTracks(int limit = 25, bool validate_responses = false, string order = null) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_songs(limit: limit, validate_responses: validate_responses, order: order);
             }
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
@@ -39,7 +39,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<LibraryArtist> GetArtists(int limit = 25, string order = null) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_artists(limit: limit, order: order);
             }
             IEnumerable<Dictionary<string, object>> artists = ToDotNet.FromList(get_results);
@@ -53,7 +53,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<LibraryAlbum> GetAlbums(int limit = 25, string order = null) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_albums(limit: limit, order: order);
             }
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);

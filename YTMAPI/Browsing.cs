@@ -14,7 +14,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static Artist GetArtist(string channelID) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_artist(channelID);
             }
             Dictionary<string, object> artist = ToDotNet.FromDict(get_results);
@@ -28,7 +28,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<ArtistAlbum> GetArtistAlbums(string channelID, string _params) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_artist_albums(channelID, _params);
             }
             IEnumerable<Dictionary<string, object>> list = ToDotNet.FromList(get_results);
@@ -41,7 +41,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static User GetUser(string channelID) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_user(channelID);
             }
             Dictionary<string, object> user = ToDotNet.FromDict(get_results);
@@ -55,7 +55,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static List<Item> GetUserPlaylists(string channelID, string _params) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_user_playlists(channelID, _params);
             }
             IEnumerable<Dictionary<string, object>> list = ToDotNet.FromList(get_results);
@@ -68,7 +68,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static Album GetAlbum(string browseID) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_album(browseID);
             }
             Dictionary<string, object> album = ToDotNet.FromDict(get_results);
@@ -82,7 +82,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static Track GetTrack(string videoID, int signatureTimestamp = 0) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 if (signatureTimestamp == 0)
                     get_results = YTM.API.get_song(videoID);
                 else
@@ -98,7 +98,7 @@ namespace YTMDotNet.YTMAPI {
         /// <returns></returns>
         public static Lyrics GetLyrics(string lyricsID) {
             dynamic get_results;
-            using (var YTM = PyYTMAPI.Get()) {
+            using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_lyrics(lyricsID);
             }
             Dictionary<string, object> lyrics = ToDotNet.FromDict(get_results);
