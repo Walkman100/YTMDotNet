@@ -84,5 +84,18 @@ namespace YTMDotNet.YTMAPI {
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
             return DotNetToLibraryHistory.Get(tracks);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.remove_history_items
+        /// <summary>Remove an item from the account’s history. This method does currently not work with brand accounts</summary>
+        /// <param name="feedbackTokens">Token to identify the item to remove, obtained from <see cref="GetHistory"/></param>
+        /// <returns></returns>
+        public static RemoveHistoryResult RemoveHistoryItems(List<string> feedbackTokens) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.remove_history_items(feedbackTokens);
+            }
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToLibraryRemoveResult.Get(result);
+        }
     }
 }
