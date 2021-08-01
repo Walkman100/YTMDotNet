@@ -86,7 +86,7 @@ namespace YTMDotNet.YTMAPI {
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.remove_history_items
-        /// <summary>Remove an item from the account’s history. This method does currently not work with brand accounts</summary>
+        /// <summary>Remove an item from the account's history. This method does currently not work with brand accounts</summary>
         /// <param name="feedbackTokens">Token to identify the item to remove, obtained from <see cref="GetHistory"/></param>
         /// <returns></returns>
         public static RemoveHistoryResult RemoveHistoryItems(List<string> feedbackTokens) {
@@ -96,6 +96,22 @@ namespace YTMDotNet.YTMAPI {
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibraryRemoveResult.Get(result);
+        }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.rate_song
+        /// <summary>Rates a song ("thumbs up"/"thumbs down" interactions on YouTube Music)</summary>
+        /// <param name="videoID">Video id</param>
+        /// <param name="rating">One of 'LIKE', 'DISLIKE', 'INDIFFERENT'. 'INDIFFERENT' removes the previous rating and assigns no rating</param>
+        /// <returns></returns>
+        public static RateResult RateTrack(string videoID, LikeStatus rating) {
+            if (rating == LikeStatus.None || rating > LikeStatus.Dislike)
+                throw new System.ArgumentOutOfRangeException(nameof(rating));
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.rate_song(videoID, rating.ToString().ToUpper());
+            }
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToLibraryRateTrack.Get(result);
         }
     }
 }

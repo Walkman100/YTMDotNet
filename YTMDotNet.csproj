@@ -47,6 +47,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToLibraryHistory.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryLikedTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryPlaylists.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToLibraryRateTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryRemoveResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="YTMAPI\Models\Lyrics.cs" />
     <Compile Include="YTMAPI\Models\LibraryPlaylist.cs" />
     <Compile Include="YTMAPI\Models\Playlist.cs" />
+    <Compile Include="YTMAPI\Models\RateResult.cs" />
     <Compile Include="YTMAPI\Models\RemoveHistoryResult.cs" />
     <Compile Include="YTMAPI\Models\WatchPlaylist.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
