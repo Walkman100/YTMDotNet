@@ -13,7 +13,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Title = input["artist"] as string,
                 ShuffleID = input["shuffleId"] as string,
                 RadioID = input["radioId"] as string,
-                Subscribers = (int)input["subscribers"],
+                Subscribers = Helpers.ObjectAsString(input["subscribers"]),
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
             };
     }
