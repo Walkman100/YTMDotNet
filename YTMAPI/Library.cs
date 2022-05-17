@@ -26,7 +26,7 @@ namespace YTMDotNet.YTMAPI {
         public static List<LibraryTrack> GetTracks(int limit = 25, bool validate_responses = false, string order = null) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_songs(limit: limit, validate_responses: validate_responses, order: order);
+                get_results = YTM.API.get_library_songs(limit, validate_responses, order);
             }
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
             return DotNetToLibraryTracks.Get(tracks);
@@ -40,10 +40,20 @@ namespace YTMDotNet.YTMAPI {
         public static List<LibraryArtist> GetArtists(int limit = 25, string order = null) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_artists(limit: limit, order: order);
+                get_results = YTM.API.get_library_artists(limit, order);
             }
             IEnumerable<Dictionary<string, object>> artists = ToDotNet.FromList(get_results);
             return DotNetToLibraryArtists.Get(artists);
+        }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_subscriptions
+        public static List<LibraryArtist> GetSubscriptions(int limit = 25, string order = null) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.get_library_subscriptions(limit, order);
+            }
+            IEnumerable<Dictionary<string, object>> subscriptions = ToDotNet.FromList(get_results);
+            return DotNetToLibraryArtists.Get(subscriptions);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_albums
@@ -54,7 +64,7 @@ namespace YTMDotNet.YTMAPI {
         public static List<LibraryAlbum> GetAlbums(int limit = 25, string order = null) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_albums(limit: limit, order: order);
+                get_results = YTM.API.get_library_albums(limit, order);
             }
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
             return DotNetToLibraryAlbums.Get(albums);
@@ -67,7 +77,7 @@ namespace YTMDotNet.YTMAPI {
         public static Playlist GetLikedTracks(int limit = 100) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_liked_songs(limit: limit);
+                get_results = YTM.API.get_liked_songs(limit);
             }
             Dictionary<string, object> tracks = ToDotNet.FromDict(get_results);
             return DotNetToLibraryLikedTracks.Get(tracks);
