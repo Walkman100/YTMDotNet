@@ -23,17 +23,8 @@ namespace YTMDotNet.YTMAPI.Converters {
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new HistoryResultParam() {
                     Key = dict["key"] as string,
-                    Value = ObjectAsString(dict["value"])
+                    Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
-        private static string ObjectAsString(object input) {
-            if (input is double dbl)
-                return dbl.ToString(System.Globalization.NumberFormatInfo.InvariantInfo);
-            if (input is int i)
-                return i.ToString(System.Globalization.NumberFormatInfo.InvariantInfo);
-            if (input is string str)
-                return str;
-            return input.ToString();
-        }
 
         private static List<FeedbackResponse> GetResponses(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(

@@ -27,5 +27,14 @@ namespace YTMDotNet.YTMAPI.Converters {
                 NumberStyles.AllowThousands |
                 NumberStyles.AllowExponent,
                 NumberFormatInfo.InvariantInfo, out result);
+
+        /// <summary>Converts <paramref name="input"/> to string using <see cref="NumberFormatInfo.InvariantInfo"/> for <see cref="double"/> and <see cref="int"/></summary>
+        public static string ObjectAsString(object input) =>
+            input switch {
+                double dbl => dbl.ToString(NumberFormatInfo.InvariantInfo),
+                int i => i.ToString(NumberFormatInfo.InvariantInfo),
+                string str => str,
+                _ => input.ToString()
+            };
     }
 }
