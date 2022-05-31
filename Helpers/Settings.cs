@@ -23,7 +23,7 @@ namespace YTMDotNet.Helpers {
 
             if     (File.Exists(Path.Combine(Application.StartupPath, configFileName)))
                 _settingsPath = Path.Combine(Application.StartupPath, configFileName);
-            else if            (File.Exists(configFileName))
+            else if             (File.Exists(configFileName))
                 _settingsPath = new FileInfo(configFileName).FullName;
 
             try {

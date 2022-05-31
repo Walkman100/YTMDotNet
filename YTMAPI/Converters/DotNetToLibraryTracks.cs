@@ -18,7 +18,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
                 IsAvailable = (bool)input["isAvailable"],
                 IsExplicit = (bool)input["isExplicit"],
-                Duration = input["duration"] as string
+                Duration = input["duration"] as string,
+                FeedbackTokenAdd = (input["feedbackTokens"] as Dictionary<string, object>)["add"] as string,
+                FeedbackTokenRemove = (input["feedbackTokens"] as Dictionary<string, object>)["remove"] as string
             };
     }
 }

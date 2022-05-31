@@ -81,6 +81,7 @@
     <Compile Include="YTMAPI\Models\HistoryTrack.cs" />
     <Compile Include="YTMAPI\Models\Item.cs" />
     <Compile Include="YTMAPI\Models\ItemBasic.cs" />
+    <Compile Include="YTMAPI\Models\ItemWithTokens.cs" />
     <Compile Include="YTMAPI\Models\LibraryAlbum.cs" />
     <Compile Include="YTMAPI\Models\LibraryArtist.cs" />
     <Compile Include="YTMAPI\Models\LibraryTrack.cs" />
