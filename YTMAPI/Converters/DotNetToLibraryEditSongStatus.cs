@@ -14,15 +14,15 @@ namespace YTMDotNet.YTMAPI.Converters {
             };
         }
 
-        private static List<EditSongStatusResultTrackingParam> GetTrackingParams(List<object> input) =>
+        private static List<RateResultTrackingParam> GetTrackingParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new EditSongStatusResultTrackingParam() {
+                dict => new RateResultTrackingParam() {
                     Service = dict["service"] as string,
                     Params = GetParams(dict["params"] as List<object>)
                 }).ToList();
-        private static List<EditSongStatusResultParam> GetParams(List<object> input) =>
+        private static List<RateResultParam> GetParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new EditSongStatusResultParam() {
+                dict => new RateResultParam() {
                     Key = dict["key"] as string,
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
@@ -33,15 +33,15 @@ namespace YTMDotNet.YTMAPI.Converters {
                     IsProcessed = (bool)dict["isProcessed"]
                 }).ToList();
 
-        private static List<EditSongStatusResultAction> GetActions(List<object> input) =>
+        private static List<RateResultAction> GetActions(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => {
                     var NotificationActionRenderer = ((dict["addToToastAction"] as Dictionary<string, object>)
                                                         ["item"] as Dictionary<string, object>)
                                                         ["notificationActionRenderer"] as Dictionary<string, object>;
-                    return new EditSongStatusResultAction() {
+                    return new RateResultAction() {
                         ClickTrackingParams = dict["clickTrackingParams"] as string,
-                        AddToToastAction_Item_NotificationActionRenderer = new EditSongStatusResultActionNotificationRenderer() {
+                        AddToToastAction_Item_NotificationActionRenderer = new RateResultActionNotificationRenderer() {
                             ResponseText_Runs = GetText((NotificationActionRenderer["responseText"] as Dictionary<string, object>)["runs"] as List<object>),
                             TrackingParams = NotificationActionRenderer["trackingParams"] as string
                         }
