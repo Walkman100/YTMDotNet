@@ -48,7 +48,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToLibraryHistory.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryLikedTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryPlaylists.cs" />
-    <Compile Include="YTMAPI\Converters\DotNetToLibraryRateTrack.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToLibraryRateResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryRemoveResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />

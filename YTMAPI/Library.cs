@@ -121,7 +121,7 @@ namespace YTMDotNet.YTMAPI {
                 get_results = YTM.API.rate_song(videoID, rating.ToString().ToUpper());
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
-            return DotNetToLibraryRateTrack.Get(result);
+            return DotNetToLibraryRateResult.Get(result);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.edit_song_library_status
@@ -135,6 +135,25 @@ namespace YTMDotNet.YTMAPI {
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibraryEditSongStatus.Get(result);
+        }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.rate_playlist
+        /// <summary>
+        /// Rates a playlist/album ("Add to library"/"Remove from library" interactions on YouTube Music)
+        /// <br />You can also dislike a playlist/album, which has an effect on your recommendations
+        /// </summary>
+        /// <param name="playlistID">Playlist id</param>
+        /// <param name="rating">One of 'LIKE', 'DISLIKE', 'INDIFFERENT'. 'INDIFFERENT' removes the playlist/album from the library</param>
+        /// <returns></returns>
+        public static RateResult RatePlaylist(string playlistID, LikeStatus rating) {
+            if (rating == LikeStatus.None || rating > LikeStatus.Dislike)
+                throw new System.ArgumentOutOfRangeException(nameof(rating));
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.rate_playlist(playlistID, rating.ToString().ToUpper());
+            }
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToLibraryRateResult.Get(result);
         }
     }
 }

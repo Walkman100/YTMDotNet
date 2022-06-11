@@ -3,7 +3,7 @@ using System.Linq;
 using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
-    static class DotNetToLibraryRateTrack {
+    static class DotNetToLibraryRateResult {
         public static RateResult Get(Dictionary<string, object> input) {
             var ResponseContext = input["responseContext"] as Dictionary<string, object>;
             return new RateResult() {
@@ -26,7 +26,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
 
-        private static List<RateResultAction> GetActions(List<object> input) => 
+        private static List<RateResultAction> GetActions(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => {
                     var NotificationActionRenderer = ((dict["addToToastAction"] as Dictionary<string, object>)
