@@ -19,6 +19,7 @@ namespace YTMDotNet.YTMAPI.Models {
     class RateResultAction {
         public string ClickTrackingParams;
         public RateResultActionNotificationRenderer AddToToastAction_Item_NotificationActionRenderer;
+        public RateResultActionNotificationTextRenderer AddToToastAction_Item_NotificationTextRenderer;
     }
     class RateResultActionNotificationRenderer {
         public List<Text> ResponseText_Runs;
@@ -30,6 +31,11 @@ namespace YTMDotNet.YTMAPI.Models {
         public string ActionButton_ButtonRenderer_TrackingParams;
         public string TrackingParams;
     }
+    class RateResultActionNotificationTextRenderer {
+        public List<Text> SuccessResponseText_Runs;
+        public string TrackingParams;
+    }
+
     class Text {
         public string TextM;
     }
