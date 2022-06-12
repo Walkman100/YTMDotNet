@@ -52,6 +52,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToLibraryRemoveResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToPlaylist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
     <Compile Include="YTMAPI\Models\Track.cs" />
     <Compile Include="YTMAPI\Models\User.cs" />
+    <Compile Include="YTMAPI\Playlists.cs" />
     <Compile Include="YTMAPI\Search.cs" />
     <Compile Include="YTMAPI\Watch.cs" />
     <Compile Include="YTMAPI\PyYTMAPI.cs" />

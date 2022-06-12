@@ -7,8 +7,13 @@ namespace YTMDotNet.YTMAPI.Converters {
         // T-enabled Enum.Parse
         public static TEnum EnumParse<TEnum>(string value, bool ignoreCase = true) where TEnum : struct =>
             (TEnum)Enum.Parse(typeof(TEnum), value, ignoreCase);
+        public static TEnum? EnumParseNullable<TEnum>(string value, bool ignoreCase = true) where TEnum : struct =>
+            string.IsNullOrEmpty(value) ? null : (TEnum)Enum.Parse(typeof(TEnum), value, ignoreCase);
 
         // get default value instead of exception on missing key: https://stackoverflow.com/a/33223183/2999220
+
+        /// <summary>Gets the value associated with the specified key, or default if it isn't contained in the <see cref="IDictionary{TKey, TValue}"/>.</summary>
+        /// <param name="defaultValue">Value to return if <paramref name="key"/> is not found in the <see cref="IDictionary{TKey, TValue}"/>.</param>
         public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue = default) =>
             dict.TryGetValue(key, out TValue value) ? value : defaultValue;
 
