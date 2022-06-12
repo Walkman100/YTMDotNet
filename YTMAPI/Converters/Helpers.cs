@@ -31,10 +31,20 @@ namespace YTMDotNet.YTMAPI.Converters {
         /// <summary>Converts <paramref name="input"/> to string using <see cref="NumberFormatInfo.InvariantInfo"/> for <see cref="double"/> and <see cref="int"/></summary>
         public static string ObjectAsString(object input) =>
             input switch {
-                double dbl => dbl.ToString(NumberFormatInfo.InvariantInfo),
-                int i => i.ToString(NumberFormatInfo.InvariantInfo),
                 string str => str,
+                int i => i.ToString(NumberFormatInfo.InvariantInfo),
+                ulong u => u.ToString(NumberFormatInfo.InvariantInfo),
+                double dbl => dbl.ToString(NumberFormatInfo.InvariantInfo),
                 _ => input.ToString()
+            };
+
+        public static ulong ObjectAsULong(object input) =>
+            input switch {
+                ulong u => u,
+                int i => (ulong)i,
+                double dbl => (ulong)dbl,
+                string str => ulong.Parse(str),
+                _ => throw new InvalidCastException($"Cannot convert {input.GetType().FullName} to ulong")
             };
     }
 }

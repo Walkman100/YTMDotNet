@@ -157,9 +157,7 @@ namespace YTMDotNet.YTMAPI {
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.subscribe_artists
-        /// <summary>
-        /// Subscribe to artists. Adds the artists to your library
-        /// </summary>
+        /// <summary>Subscribe to artists. Adds the artists to your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
         public static SubscribeResult SubscribeArtists(List<string> channelIDs) {
@@ -172,9 +170,7 @@ namespace YTMDotNet.YTMAPI {
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.unsubscribe_artists
-        /// <summary>
-        /// Unsubscribe from artists. Removes the artists from your library
-        /// </summary>
+        /// <summary>Unsubscribe from artists. Removes the artists from your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
         public static SubscribeResult UnsubscribeArtists(List<string> channelIDs) {

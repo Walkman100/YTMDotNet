@@ -39,7 +39,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                         return new SubscribeResultAction() {
                             ClickTrackingParams = dict["clickTrackingParams"] as string,
                             AddToToastAction_Item_NotificationActionRenderer = new RateResultActionNotificationRenderer() {
-                                ResponseText_Runs = GetText((NotifictionTextRenderer["responseText"] as Dictionary<string, object>)["runs"] as List<object>),
+                                ResponseText_Runs = GetText((NotifictionTextRenderer["successResponseText"] as Dictionary<string, object>)["runs"] as List<object>),
                                 TrackingParams = NotifictionTextRenderer["trackingParams"] as string
                             }
                         };
@@ -81,8 +81,8 @@ namespace YTMDotNet.YTMAPI.Converters {
             var Timestamp = input["timestamp"] as Dictionary<string, object>;
             return new SubscribeResultFrameworkUpdatesEntityBatchUpdate() {
                 Mutations = GetMutations(input["mutations"] as List<object>),
-                TimestampSeconds = (ulong)Timestamp["seconds"],
-                TimestampNanos = (ulong)Timestamp["nanos"]
+                TimestampSeconds = Helpers.ObjectAsULong(Timestamp["seconds"]),
+                TimestampNanos = Helpers.ObjectAsULong(Timestamp["nanos"])
             };
         }
         private static List<SubscribeResultFrameworkUpdatesEntityBatchUpdateMutation> GetMutations(List<object> input) =>

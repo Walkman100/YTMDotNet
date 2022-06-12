@@ -47,7 +47,7 @@ namespace YTMDotNet.YTMAPI.Converters {
         }
 
         private static Dictionary<string, object> convertNamedDict(dynamic value) {
-            Dictionary<string, object> items = new();
+            var items = new Dictionary<string, object>();
             foreach (string key in value)
                 items.Add(key, tryAll(value[key]));
             return items;
@@ -67,7 +67,7 @@ namespace YTMDotNet.YTMAPI.Converters {
         }
 
         private static List<object> convertUnnamedArray(dynamic value) {
-            List<object> items = new();
+            var items = new List<object>();
             foreach (object item in value)
                 items.Add(tryAll(item));
             return items;
