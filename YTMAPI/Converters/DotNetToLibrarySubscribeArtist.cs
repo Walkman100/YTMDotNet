@@ -11,9 +11,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                 ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
                 Actions = GetActions(input["actions"] as List<object>),
                 TrackingParams = input["trackingParams"] as string,
-                FrameworkUpdates_EntityBatchUpdate = GetEntityBatchUpdate(
-                    (input["frameworkUpdates"] as Dictionary<string, object>)["entityBatchUpdate"] as Dictionary<string, object>
-                )
+                FrameworkUpdates_EntityBatchUpdate = !input.ContainsKey("frameworkUpdates") ? null :
+                    GetEntityBatchUpdate((input["frameworkUpdates"] as Dictionary<string, object>)["entityBatchUpdate"] as Dictionary<string, object>)
             };
         }
 
