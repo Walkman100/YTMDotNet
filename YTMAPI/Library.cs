@@ -155,5 +155,20 @@ namespace YTMDotNet.YTMAPI {
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibraryRateResult.Get(result);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.subscribe_artists
+        /// <summary>
+        /// Subscribe to artists. Adds the artists to your library
+        /// </summary>
+        /// <param name="channelIDs">Artist channel ids</param>
+        /// <returns></returns>
+        public static SubscribeResult SubscribeArtists(List<string> channelIDs) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.subscribe_artists(channelIDs);
+            }
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToLibrarySubscribeArtist.Get(result);
+        }
     }
 }
