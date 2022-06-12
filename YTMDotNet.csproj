@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Python.Runtime, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5000fea6cba702dd, processorArchitecture=MSIL">
+      <HintPath>packages\pythonnet.3.0.0-preview2022-06-03\lib\netstandard2.0\Python.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
@@ -136,6 +139,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Packages.config" />
     <None Include="Properties\App.config" />
     <None Include="Properties\App.manifest" />
   </ItemGroup>
@@ -143,10 +147,6 @@
     <ProjectReference Include="Ookii.Dialogs\Ookii.Dialogs.csproj">
       <Project>{779e62b3-c5a6-494d-9d87-96c0dec7ffb0}</Project>
       <Name>Ookii.Dialogs</Name>
-    </ProjectReference>
-    <ProjectReference Include="PythonNET\src\runtime\Python.Runtime.csproj">
-      <Project>{69cf3293-3b4a-4b43-809f-b262dc449d1f}</Project>
-      <Name>Python.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
