@@ -96,6 +96,7 @@
     <Compile Include="YTMAPI\Models\Lyrics.cs" />
     <Compile Include="YTMAPI\Models\LibraryPlaylist.cs" />
     <Compile Include="YTMAPI\Models\Playlist.cs" />
+    <Compile Include="YTMAPI\Models\PrivacyStatus.cs" />
     <Compile Include="YTMAPI\Models\RateResult.cs" />
     <Compile Include="YTMAPI\Models\RemoveHistoryResult.cs" />
     <Compile Include="YTMAPI\Models\SubscribeResult.cs" />
