@@ -33,5 +33,24 @@ namespace YTMDotNet.YTMAPI {
             }
             return get_results;
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.edit_playlist
+        /// <summary>Edit title, description or privacyStatus of a playlist. You may also move an item within a playlist or append another playlist to this playlist.</summary>
+        /// <param name="playlistID">Playlist id</param>
+        /// <param name="title">Optional. New title for the playlist</param>
+        /// <param name="description">Optional. New description for the playlist</param>
+        /// <param name="privacyStatus">Optional. New privacy status for the playlist</param>
+        /// <param name="moveItem">Optional. Move one item before another. Items are specified by <see cref="PlaylistTrack.SetVideoID"/>, see <see cref="GetPlaylist"/></param>
+        /// <param name="addPlaylistID">Optional. ID of another playlist to add to this playlist</param>
+        /// <returns>Status String or full response</returns>
+        public static string EditPlaylist(string playlistID, string title = null, string description = null, PrivacyStatus? privacyStatus = null, (string, string)? moveItem = null, string addPlaylistID = null) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.edit_playlist(playlistID, title, description, privacyStatus?.ToString()?.ToUpperInvariant(), moveItem == null ? null : new[] { moveItem.Value.Item1, moveItem.Value.Item2 }, addPlaylistID);
+            }
+            return get_results;
+        }
+        public static string StatusSucceeded = "STATUS_SUCCEEDED";
+        public static string StatusFailed = "STATUS_FAILED";
     }
 }

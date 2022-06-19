@@ -118,7 +118,7 @@ namespace YTMDotNet.YTMAPI {
                 throw new System.ArgumentOutOfRangeException(nameof(rating));
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.rate_song(videoID, rating.ToString().ToUpper());
+                get_results = YTM.API.rate_song(videoID, rating.ToString().ToUpperInvariant());
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibraryRateResult.Get(result);
@@ -150,7 +150,7 @@ namespace YTMDotNet.YTMAPI {
                 throw new System.ArgumentOutOfRangeException(nameof(rating));
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.rate_playlist(playlistID, rating.ToString().ToUpper());
+                get_results = YTM.API.rate_playlist(playlistID, rating.ToString().ToUpperInvariant());
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibraryRateResult.Get(result);
