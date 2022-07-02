@@ -64,5 +64,21 @@ namespace YTMDotNet.YTMAPI {
             }
             return get_results;
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.add_playlist_items
+        /// <summary>Add songs to an existing playlist</summary>
+        /// <param name="playlistID">Playlist id</param>
+        /// <param name="videoIDs">List of Video ids</param>
+        /// <param name="sourcePlaylist">Playlist id of a playlist to add to the current playlist (no duplicate check)</param>
+        /// <param name="duplicates">If <see langword="true"/>, duplicates will be added. If <see langword="false"/>, an error will be returned if there are duplicates (no items are added to the playlist)</param>
+        /// <returns>Status String and a dict containing the new setVideoId for each videoId or full response</returns>
+        public static AddPlaylistItemsResult AddPlaylistItems(string playlistID, List<string> videoIDs = null, string sourcePlaylist = null, bool duplicates = false) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.add_playlist_items(playlistID, videoIDs, sourcePlaylist, duplicates);
+            }
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToAddPlaylistItemsResult.Get(result);
+        }
     }
 }
