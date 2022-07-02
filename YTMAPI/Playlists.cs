@@ -52,5 +52,17 @@ namespace YTMDotNet.YTMAPI {
         }
         public static string StatusSucceeded = "STATUS_SUCCEEDED";
         public static string StatusFailed = "STATUS_FAILED";
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.delete_playlist
+        /// <summary>Delete a playlist.</summary>
+        /// <param name="playlistID">Playlist id</param>
+        /// <returns>Status String or full response</returns>
+        public static string DeletePlaylist(string playlistID) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.delete_playlist(playlistID);
+            }
+            return get_results;
+        }
     }
 }
