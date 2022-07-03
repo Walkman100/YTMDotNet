@@ -12,9 +12,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 BrowseID = input["browseId"] as string,
                 Title = input["title"] as string,
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
-                Type = input["type"] as string,
-                Year = (int)input["year"],
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>)
+                Type = input.GetValue("type") as string,
+                Year = input.GetValue("year") as int?,
+                Artists = DotNetToGeneral.GetSimpleItems(input.GetValue("artists") as List<object>)
             };
     }
 }

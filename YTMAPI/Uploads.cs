@@ -31,5 +31,19 @@ namespace YTMDotNet.YTMAPI {
             IEnumerable<Dictionary<string, object>> artists = ToDotNet.FromList(get_results);
             return DotNetToLibraryArtists.Get(artists);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_upload_albums
+        /// <summary>Gets the albums of uploaded songs in the user's library.</summary>
+        /// <param name="limit">Number of albums to return. Default: 25</param>
+        /// <param name="order">Order of albums to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
+        /// <returns>List of albums as returned by <see cref="Library.GetAlbums"/></returns>
+        public static List<LibraryAlbum> GetLibraryUploadAlbums(int limit = 25, Order order = Order.Default) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.get_library_upload_albums(limit, Converters.Helpers.OrderToString(order));
+            }
+            IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
+            return DotNetToLibraryAlbums.Get(albums);
+        }
     }
 }
