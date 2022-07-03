@@ -12,7 +12,7 @@ namespace YTMDotNet.YTMAPI {
         public static List<UploadTrack> GetLibraryUploadTracks(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_upload_songs(limit, order == Order.Default ? null : order.ToString().ToLowerInvariant());
+                get_results = YTM.API.get_library_upload_songs(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
             return DotNetToUploadTracks.Get(tracks);
@@ -22,11 +22,11 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Gets the artists of uploaded songs in the user's library.</summary>
         /// <param name="limit">Number of artists to return. Default: 25</param>
         /// <param name="order">Order of artists to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
-        /// <returns>List of artists as returned by get_library_artists()</returns>
+        /// <returns>List of artists as returned by <see cref="Library.GetArtists"/></returns>
         public static List<LibraryArtist> GetLibraryUploadArtists(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_upload_artists(limit, order == Order.Default ? null : order.ToString().ToLowerInvariant());
+                get_results = YTM.API.get_library_upload_artists(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> artists = ToDotNet.FromList(get_results);
             return DotNetToLibraryArtists.Get(artists);

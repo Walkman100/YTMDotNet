@@ -51,5 +51,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                 string str => ulong.Parse(str),
                 _ => throw new InvalidCastException($"Cannot convert {input.GetType().FullName} to ulong")
             };
+
+        public static string OrderToString(Models.Order order) => 
+            order == Models.Order.Default ? null : order.ToString().ToLowerInvariant();
     }
 }
