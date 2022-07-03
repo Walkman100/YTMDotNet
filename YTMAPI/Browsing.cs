@@ -4,7 +4,7 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI {
     static class Browsing {
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_artist
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_artist
         /// <summary>
         /// Get information about an artist and their top releases (songs, albums, singles, videos, and related artists). 
         /// The top lists contain pointers for getting the full list of releases. For songs/videos, pass the browseId to get_playlist(). 
@@ -21,7 +21,7 @@ namespace YTMDotNet.YTMAPI {
             return DotNetToArtist.Get(artist);
         }
 
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_artist_albums
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_artist_albums
         /// <summary>Get the full list of an artist’s albums or singles</summary>
         /// <param name="channelID">channel Id of the artist</param>
         /// <param name="_params">params obtained by get_artist()</param>
@@ -35,7 +35,7 @@ namespace YTMDotNet.YTMAPI {
             return DotNetToArtistAlbums.Get(list);
         }
 
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_user
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_user
         /// <summary>Retrieve a user’s page. A user may own videos or playlists.</summary>
         /// <param name="channelID">channelId of the user</param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace YTMDotNet.YTMAPI {
             return DotNetToUser.Get(user, channelID);
         }
 
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_user_playlists
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_user_playlists
         /// <summary>Retrieve a list of playlists for a given user. Call this function again with the returned params to get the full list.</summary>
         /// <param name="channelID">channelId of the user</param>
         /// <param name="_params">params obtained by get_artist()</param>
@@ -62,7 +62,7 @@ namespace YTMDotNet.YTMAPI {
             return DotNetToUserPlaylists.Get(list);
         }
 
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_album
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_album
         /// <summary>Get information and tracks of an album</summary>
         /// <param name="browseID">browseId of the album, for example returned by search()</param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace YTMDotNet.YTMAPI {
             return DotNetToAlbum.Get(album);
         }
 
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_song
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_song
         /// <summary>Returns metadata and streaming information about a song or video.</summary>
         /// <param name="videoID">Video id</param>
         /// <param name="signatureTimestamp">Provide the current YouTube signatureTimestamp. If not provided a default value will be used, which might result in invalid streaming URLs</param>

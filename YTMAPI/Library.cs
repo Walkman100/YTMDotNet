@@ -128,13 +128,13 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Adds or removes a song from your library depending on the token provided.</summary>
         /// <param name="feedbackTokens">List of feedbackTokens obtained from authenticated requests to endpoints that return songs (e.g. <see cref="Browsing.GetAlbum"/>)</param>
         /// <returns></returns>
-        public static EditSongStatusResult EditSongStatus(List<string> feedbackTokens) {
+        public static EditTrackStatusResult EditTrackStatus(List<string> feedbackTokens) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.edit_song_library_status(feedbackTokens);
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
-            return DotNetToLibraryEditSongStatus.Get(result);
+            return DotNetToLibraryEditTrackStatus.Get(result);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.rate_playlist

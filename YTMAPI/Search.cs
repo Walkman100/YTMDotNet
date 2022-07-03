@@ -4,7 +4,7 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI {
     static class Search {
-        // https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.search
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.search
         /// <summary>Search YouTube music Returns results within the provided category.</summary>
         /// <param name="query">Query string, i.e. ‘Oasis Wonderwall’</param>
         /// <param name="filter">Filter for item types. Allowed values: songs, videos, albums, artists, playlists, community_playlists, featured_playlists, uploads. Default: Default search, including all types of items.</param>

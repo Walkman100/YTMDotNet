@@ -3,10 +3,10 @@ using System.Linq;
 using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
-    static class DotNetToLibraryEditSongStatus {
-        public static EditSongStatusResult Get(Dictionary<string, object> input) {
+    static class DotNetToLibraryEditTrackStatus {
+        public static EditTrackStatusResult Get(Dictionary<string, object> input) {
             var ResponseContext = input["responseContext"] as Dictionary<string, object>;
-            return new EditSongStatusResult() {
+            return new EditTrackStatusResult() {
                 VisitorData = ResponseContext["visitorData"] as string,
                 ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
                 FeedbackResponses = GetFeedbackResponses(input["feedbackResponses"] as List<object>),
@@ -27,9 +27,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
 
-        private static List<EditSongStatusResultFeedbackResponse> GetFeedbackResponses(List<object> input) =>
+        private static List<EditTrackStatusResultFeedbackResponse> GetFeedbackResponses(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new EditSongStatusResultFeedbackResponse() {
+                dict => new EditTrackStatusResultFeedbackResponse() {
                     IsProcessed = (bool)dict["isProcessed"]
                 }).ToList();
 
