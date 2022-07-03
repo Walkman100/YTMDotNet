@@ -45,5 +45,19 @@ namespace YTMDotNet.YTMAPI {
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
             return DotNetToLibraryAlbums.Get(albums);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_upload_artist
+        /// <summary>Returns a list of uploaded tracks for the artist.</summary>
+        /// <param name="browseID">Browse id of the upload artist, i.e. from <see cref="GetLibraryUploadTracks"/></param>
+        /// <param name="limit">Number of songs to return (increments of 25).</param>
+        /// <returns>List of uploaded songs.</returns>
+        public static List<UploadTrack> GetLibraryUploadArtist(string browseID, int limit = 25) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.get_library_upload_artist(browseID, limit);
+            }
+            IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
+            return DotNetToUploadTracks.Get(tracks);
+        }
     }
 }
