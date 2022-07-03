@@ -21,12 +21,12 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Gets the songs in the user's library (liked videos are not included). To get liked songs and videos, use get_liked_songs()</summary>
         /// <param name="limit">Number of songs to retrieve</param>
         /// <param name="validate_responses">Flag indicating if responses from YTM should be validated and retried in case when some songs are missing.</param>
-        /// <param name="order">Order of songs to return. Allowed values: "a_to_z", "z_to_a", "recently_added". Default: Default order.</param>
+        /// <param name="order">Order of songs to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryTrack> GetTracks(int limit = 25, bool validate_responses = false, string order = null) {
+        public static List<LibraryTrack> GetTracks(int limit = 25, bool validate_responses = false, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_songs(limit, validate_responses, order);
+                get_results = YTM.API.get_library_songs(limit, validate_responses, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
             return DotNetToLibraryTracks.Get(tracks);
@@ -35,22 +35,22 @@ namespace YTMDotNet.YTMAPI {
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_artists
         /// <summary>Gets the artists of the songs in the user's library.</summary>
         /// <param name="limit">Number of artists to return</param>
-        /// <param name="order">Order of artists to return. Allowed values: "a_to_z", "z_to_a", "recently_added". Default: Default order.</param>
+        /// <param name="order">Order of artists to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryArtist> GetArtists(int limit = 25, string order = null) {
+        public static List<LibraryArtist> GetArtists(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_artists(limit, order);
+                get_results = YTM.API.get_library_artists(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> artists = ToDotNet.FromList(get_results);
             return DotNetToLibraryArtists.Get(artists);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_subscriptions
-        public static List<LibraryArtist> GetSubscriptions(int limit = 25, string order = null) {
+        public static List<LibraryArtist> GetSubscriptions(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_subscriptions(limit, order);
+                get_results = YTM.API.get_library_subscriptions(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> subscriptions = ToDotNet.FromList(get_results);
             return DotNetToLibraryArtists.Get(subscriptions);
@@ -59,12 +59,12 @@ namespace YTMDotNet.YTMAPI {
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_albums
         /// <summary>Gets the albums in the user's library.</summary>
         /// <param name="limit">Number of albums to return</param>
-        /// <param name="order">Order of albums to return. Allowed values: "a_to_z", "z_to_a", "recently_added". Default: Default order.</param>
+        /// <param name="order">Order of albums to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryAlbum> GetAlbums(int limit = 25, string order = null) {
+        public static List<LibraryAlbum> GetAlbums(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.get_library_albums(limit, order);
+                get_results = YTM.API.get_library_albums(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
             return DotNetToLibraryAlbums.Get(albums);
