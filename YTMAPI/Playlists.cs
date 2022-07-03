@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using YTMDotNet.YTMAPI.Converters;
 using YTMDotNet.YTMAPI.Models;
 
@@ -79,6 +80,29 @@ namespace YTMDotNet.YTMAPI {
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToAddPlaylistItemsResult.Get(result);
+        }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.remove_playlist_items
+        /// <summary>Remove songs from an existing playlist</summary>
+        /// <param name="playlistID">Playlist id</param>
+        /// <param name="videoIDs">
+        /// List of playlist items. Get SetVideoID from <see cref="PlaylistTrack.SetVideoID"/> returned by <see cref="GetPlaylist"/>.
+        /// <br />Must contain both <see cref="videoIDs.VideoID"/> and <see cref="videoIDs.SetVideoID"/> values.
+        /// </param>
+        /// <returns>Status String or full response</returns>
+        public static string RemovePlaylistItems(string playlistID, List<(string VideoID, string SetVideoID)> videoIDs) {
+            // videos parameter python input type: List[Dict[KT, VT]]
+            // description: List of PlaylistItems, see `get_playlist()`. Must contain videoId and setVideoId
+            var videos = videoIDs.Select(v => new Dictionary<string, string>() {
+                { "videoId", v.VideoID },
+                { "setVideoId", v.SetVideoID }
+            }).ToList();
+
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.remove_playlist_items(playlistId: playlistID, videos: videos);
+            }
+            return get_results;
         }
     }
 }
