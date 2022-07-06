@@ -54,7 +54,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public string ChannelID;
         public bool IsOwnerViewing;
         public bool IsCrawlable;
-        public double AverageRating;
+        public double? AverageRating;
         public bool AllowRatings;
         public int ViewCount;
         public string Author;

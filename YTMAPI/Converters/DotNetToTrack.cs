@@ -96,7 +96,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Thumbnails = DotNetToGeneral.GetThumbnails(
                     (input["thumbnail"] as Dictionary<string, object>)
                     ["thumbnails"] as List<object>),
-                AverageRating = (double)input["averageRating"],
+                AverageRating = (double?)input.GetValue("averageRating"),
                 AllowRatings = (bool)input["allowRatings"],
                 ViewCount = (int)input["viewCount"],
                 Author = input["author"] as string,
