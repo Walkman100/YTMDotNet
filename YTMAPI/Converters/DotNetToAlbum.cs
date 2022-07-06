@@ -7,33 +7,31 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static Album Get(Dictionary<string, object> input) =>
             new Album() {
                 Title = input["title"] as string,
-                BrowseID = input["playlistId"] as string,
+                Type = input["type"] as string,
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
+                Description = input.GetValue("description") as string,
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
+                Year = (int)input["year"],
                 TrackCount = (int)input["trackCount"],
-                DurationMS = (int)input["durationMs"],
-                Description = input["description"] as string,
-                ReleaseDate = GetReleaseDate(input["releaseDate"] as Dictionary<string, object>),
+                Duration = input["duration"] as string,
+                BrowseID = input["audioPlaylistId"] as string,
                 Tracks = GetTracks(input["tracks"] as List<object>),
-                Artists = DotNetToGeneral.GetSimpleItems(input["artist"] as List<object>),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
             };
 
-        private static AlbumReleaseDate GetReleaseDate(Dictionary<string, object> input) =>
-            new AlbumReleaseDate() {
-                Year = (int)input["year"],
-                Month = (int)input["month"],
-                Day = (int)input["day"]
-            };
         private static List<AlbumTrack> GetTracks(List<object> input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new AlbumTrack() {
-                    Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
-                    Index = (int)dict["index"],
-                    Artists = dict["artists"] as string,
-                    LengthMS = (int)dict["lengthMs"],
+                    Title = dict["title"] as string,
+                    Artists = dict["artists"]?.ToString(),
+                    Album = dict["album"]?.ToString(),
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
-                    IsExplicit = (bool)dict["isExplicit"],
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>),
+                    IsAvailable = (bool)dict["isAvailable"],
+                    IsExplicit = (bool)dict["isExplicit"],
+                    Duration = dict["duration"] as string,
+                    FeedbackTokenAdd = (dict["feedbackTokens"] as Dictionary<string, object>)["add"] as string,
+                    FeedbackTokenRemove = (dict["feedbackTokens"] as Dictionary<string, object>)["remove"] as string
                 }).ToList();
     }
 }
