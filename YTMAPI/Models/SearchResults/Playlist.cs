@@ -3,6 +3,6 @@ namespace YTMDotNet.YTMAPI.Models.SearchResults {
         public Playlist() => ItemType = ItemType.Playlist;
 
         public string Author;
-        public int ItemCount;
+        public string ItemCount;
     }
 }

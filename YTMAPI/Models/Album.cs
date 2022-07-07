@@ -4,7 +4,7 @@ namespace YTMDotNet.YTMAPI.Models {
     class Album : Item {
         public string Type;
         public string Description;
-        public int Year;
+        public string Year;
         public int TrackCount;
         public string Duration;
 

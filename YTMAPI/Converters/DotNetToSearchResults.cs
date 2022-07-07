@@ -64,7 +64,7 @@ namespace YTMDotNet.YTMAPI.Converters {
         private static Models.SearchResults.Playlist GetPlaylist(Dictionary<string, object> input) =>
             new Models.SearchResults.Playlist() {
                 Title = input["title"] as string,
-                ItemCount = (int)input["itemCount"],
+                ItemCount = input["itemCount"] as string,
                 Author = input["author"] as string,
                 BrowseID = input["browseId"] as string,
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)

@@ -20,7 +20,7 @@ namespace YTMDotNet.YTMAPI.Models {
     }
 
     class TrackStreamingData {
-        public int ExpiresInSeconds;
+        public string ExpiresInSeconds;
         public List<TrackFormat> Formats;
         public List<TrackFormat> AdaptiveFormats;
     }
@@ -29,34 +29,34 @@ namespace YTMDotNet.YTMAPI.Models {
         public string Quality;
         public string AudioQuality;
         public string MimeType;
-        public int ContentLength;
-        public int ApproxDurationMS;
+        public string ContentLength;
+        public string ApproxDurationMS;
         public int? Width;
         public int? Height;
         public string ProjectionType;
         public int? FPS;
         public int Bitrate;
         public int AverageBitrate;
-        public int? AudioSampleRate;
+        public string AudioSampleRate;
         public int? AudioChannels;
         public double? LoudnessDB;
         public int ITag;
-        public ulong LastModified;
+        public string LastModified;
         public string SignatureCipher;
-        public int? InitRangeStart;
-        public int? InitRangeEnd;
-        public int? IndexRangeStart;
-        public int? IndexRangeEnd;
+        public string InitRangeStart;
+        public string InitRangeEnd;
+        public string IndexRangeStart;
+        public string IndexRangeEnd;
     }
 
     class TrackVideoDetails : Item {
-        public int LengthSeconds;
+        public string LengthSeconds;
         public string ChannelID;
         public bool IsOwnerViewing;
         public bool IsCrawlable;
         public double? AverageRating;
         public bool AllowRatings;
-        public int ViewCount;
+        public string ViewCount;
         public string Author;
         public bool IsPrivate;
         public bool IsUnpluggedCorpus;
@@ -70,7 +70,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public string SiteName;
         public string AppName;
         public string AndroidPackage;
-        public int iOSAppStoreID;
+        public string iOSAppStoreID;
         public string iOSAppArguments;
         public string OGType;
         public string URLApplinksiOS;
@@ -89,10 +89,10 @@ namespace YTMDotNet.YTMAPI.Models {
         public string PageOwnerName;
         public string PageOwnerExternalChannelID;
         public string PageOwnerYouTubeProfileURL;
-        public int VideoDetailsDurationInSeconds;
+        public string VideoDetailsDurationInSeconds;
         public string VideoDetailsDurationISO8601;
         public List<TrackLinkAlternates> LinkAlternates;
-        public int ViewCount;
+        public string ViewCount;
         public string Category;
         public DateTime PublishDate;
         public DateTime UploadDate;

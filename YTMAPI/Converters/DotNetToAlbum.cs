@@ -11,7 +11,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
                 Description = input.GetValue("description") as string,
                 Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
-                Year = (int)input["year"],
+                Year = input["year"] as string,
                 TrackCount = (int)input["trackCount"],
                 Duration = input["duration"] as string,
                 BrowseID = input["audioPlaylistId"] as string,
