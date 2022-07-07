@@ -13,7 +13,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 BrowseID = input["videoId"] as string,
                 Title = input["title"] as string,
                 Duration = input["duration"] as string,
-                Artists = DotNetToGeneral.GetSimpleItems(input["artist"] as List<object>),
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
                 AlbumName = (input["album"] as Dictionary<string, object>)["name"] as string,
                 AlbumID = (input["album"] as Dictionary<string, object>)["id"] as string,
                 LikeStatus = Helpers.EnumParse<LikeStatus>(input["likeStatus"] as string),
