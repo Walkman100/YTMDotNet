@@ -11,45 +11,25 @@ namespace YTMDotNet.YTMAPI.Converters {
         }
 
         #region Private Converters
-        private static object tryAll(dynamic value) {
-            if (tryBasic(value.ToString(), out object result1))
-                return result1;
-            else if (tryNamedDict(value, out Dictionary<string, object> result2))
-                return result2;
-            else if (tryUnnamedArray(value, out List<object> result3))
-                return result3;
-            else
-                return value.ToString();
-        }
+        private static object toDotNet(dynamic value) {
+            string className = value.__class__.__name__;
 
-        private static bool tryBasic(string value, out object result) {
-            if (value == "None") {
-                result = null;
-                return true;
-            } else if (value == "True") {
-                result = true;
-                return true;
-            } else if (value == "False") {
-                result = false;
-                return true;
-            } else if (Helpers.TryParse(value, out int result2)) {
-                result = result2;
-                return true;
-            } else if (Helpers.TryParse(value, out ulong result3)) {
-                result = result3;
-                return true;
-            } else if (Helpers.TryParse(value, out double result4)) {
-                result = result4;
-                return true;
-            }
-            result = null;
-            return false;
+            return className switch {
+                "NoneType" => null,
+                "bool" => (bool)value,
+                "int" => (int)value,
+                "float" => Helpers.ParseDouble(value.ToString()),
+                "str" => (string)value,
+                "list" => convertUnnamedArray(value),
+                "dict" => convertNamedDict(value),
+                _ => throw new System.ApplicationException($"Unknown Python Type: {className}")
+            };
         }
 
         private static Dictionary<string, object> convertNamedDict(dynamic value) {
             var items = new Dictionary<string, object>();
             foreach (string key in value)
-                items.Add(key, tryAll(value[key]));
+                items.Add(key, toDotNet(value[key]));
             return items;
         }
         private static bool tryNamedDict(dynamic value, out Dictionary<string, object> result) {
@@ -69,7 +49,7 @@ namespace YTMDotNet.YTMAPI.Converters {
         private static List<object> convertUnnamedArray(dynamic value) {
             var items = new List<object>();
             foreach (object item in value)
-                items.Add(tryAll(item));
+                items.Add(toDotNet(item));
             return items;
         }
         private static bool tryUnnamedArray(dynamic value, out List<object> result) {

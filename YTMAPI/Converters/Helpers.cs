@@ -33,6 +33,16 @@ namespace YTMDotNet.YTMAPI.Converters {
                 NumberStyles.AllowExponent,
                 NumberFormatInfo.InvariantInfo, out result);
 
+        /// <summary>Duplicate of the <see cref="double.Parse(string)"/> method except with <see cref="NumberFormatInfo.InvariantInfo"/> instead of <see cref="NumberFormatInfo.CurrentInfo"/></summary>
+        public static double ParseDouble(string s) =>
+            double.Parse(s, NumberStyles.AllowLeadingWhite |
+                NumberStyles.AllowTrailingWhite |
+                NumberStyles.AllowLeadingSign |
+                NumberStyles.AllowDecimalPoint |
+                NumberStyles.AllowThousands |
+                NumberStyles.AllowExponent,
+                NumberFormatInfo.InvariantInfo);
+
         /// <summary>Converts <paramref name="input"/> to string using <see cref="NumberFormatInfo.InvariantInfo"/> for <see cref="double"/> and <see cref="int"/></summary>
         public static string ObjectAsString(object input) =>
             input switch {
