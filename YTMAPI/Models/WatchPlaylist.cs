@@ -10,10 +10,11 @@ namespace YTMDotNet.YTMAPI.Models {
 
     class WatchTrack : Item {
         public string Length;
-        public int Year;
+        public int? Year;
         public LikeStatus LikeStatus;
         public List<ItemBasic> Artists;
         public string AlbumName;
         public string AlbumID;
+        public string Views;
     }
 }

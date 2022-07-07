@@ -20,9 +20,10 @@ namespace YTMDotNet.YTMAPI.Converters {
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnail"] as List<object>),
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
                     Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as List<object>),
-                    AlbumName = (dict["album"] as Dictionary<string, object>)["name"] as string,
-                    AlbumID = (dict["album"] as Dictionary<string, object>)["id"] as string,
-                    Year = (int)dict["year"]
+                    AlbumName = (dict.GetValue("album") as Dictionary<string, object>)?["name"] as string,
+                    AlbumID = (dict.GetValue("album") as Dictionary<string, object>)?["id"] as string,
+                    Year = dict.GetValue("year") as int?,
+                    Views = dict.GetValue("views") as string
                 }).ToList();
     }
 }
