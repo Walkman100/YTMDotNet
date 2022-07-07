@@ -57,6 +57,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToPlaylist.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToPlaylistDeleteResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUploadTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
@@ -87,6 +88,7 @@
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="YTMAPI\Models\Artist.cs" />
+    <Compile Include="YTMAPI\Models\DeleteResult.cs" />
     <Compile Include="YTMAPI\Models\EditTrackStatusResult.cs" />
     <Compile Include="YTMAPI\Models\HistoryTrack.cs" />
     <Compile Include="YTMAPI\Models\Item.cs" />

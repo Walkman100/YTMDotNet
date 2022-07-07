@@ -58,12 +58,13 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Delete a playlist.</summary>
         /// <param name="playlistID">Playlist id</param>
         /// <returns>Status String or full response</returns>
-        public static string DeletePlaylist(string playlistID) {
+        public static DeleteResult DeletePlaylist(string playlistID) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.delete_playlist(playlistID);
             }
-            return get_results;
+            Dictionary<string, object> result = ToDotNet.FromDict(get_results);
+            return DotNetToPlaylistDeleteResult.Get(result);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.add_playlist_items
