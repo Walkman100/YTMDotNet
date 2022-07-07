@@ -161,9 +161,13 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
         public static SubscribeResult SubscribeArtists(List<string> channelIDs) {
+            var pyChannelIDs = new Python.Runtime.PyList();
+            foreach (string channelID in channelIDs)
+                pyChannelIDs.Append(new Python.Runtime.PyString(channelID));
+
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.subscribe_artists(channelIDs);
+                get_results = YTM.API.subscribe_artists(pyChannelIDs);
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibrarySubscribeArtist.Get(result);
@@ -174,9 +178,13 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
         public static SubscribeResult UnsubscribeArtists(List<string> channelIDs) {
+            var pyChannelIDs = new Python.Runtime.PyList();
+            foreach (string channelID in channelIDs)
+                pyChannelIDs.Append(new Python.Runtime.PyString(channelID));
+
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
-                get_results = YTM.API.unsubscribe_artists(channelIDs);
+                get_results = YTM.API.unsubscribe_artists(pyChannelIDs);
             }
             Dictionary<string, object> result = ToDotNet.FromDict(get_results);
             return DotNetToLibrarySubscribeArtist.Get(result);
