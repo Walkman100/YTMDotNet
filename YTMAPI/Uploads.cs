@@ -72,5 +72,29 @@ namespace YTMDotNet.YTMAPI {
             Dictionary<string, object> album = ToDotNet.FromDict(get_results);
             return DotNetToUploadAlbum.Get(album);
         }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.upload_song
+        /// <summary>Uploads a song to YouTube Music</summary>
+        /// <param name="filePath">Path to the music file (mp3, m4a, wma, flac or ogg)</param>
+        /// <returns>Status String or full response</returns>
+        public static string UploadSong(string filePath) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.upload_song(filePath);
+            }
+            return get_results.ToString();
+        }
+
+        //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.delete_upload_entity
+        /// <summary>Deletes a previously uploaded song or album</summary>
+        /// <param name="entityID">The entity id of the uploaded song or album, e.g. <see cref="UploadTrack.EntityID"/> retrieved from <see cref="GetLibraryUploadTracks"/></param>
+        /// <returns>Status String or error</returns>
+        public static string DeleteUploadEntity(string entityID) {
+            dynamic get_results;
+            using (var YTM = new PyYTMAPI()) {
+                get_results = YTM.API.delete_upload_entity(entityID);
+            }
+            return get_results.ToString();
+        }
     }
 }
