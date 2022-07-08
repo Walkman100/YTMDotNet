@@ -59,6 +59,7 @@
     <Compile Include="YTMAPI\Converters\DotNetToPlaylist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToPlaylistDeleteResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToUploadAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUploadTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="YTMAPI\Models\RateResult.cs" />
     <Compile Include="YTMAPI\Models\RemoveHistoryResult.cs" />
     <Compile Include="YTMAPI\Models\SubscribeResult.cs" />
+    <Compile Include="YTMAPI\Models\UploadAlbum.cs" />
     <Compile Include="YTMAPI\Models\UploadTrack.cs" />
     <Compile Include="YTMAPI\Models\WatchPlaylist.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
