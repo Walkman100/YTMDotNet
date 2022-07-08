@@ -91,7 +91,7 @@ namespace YTMDotNet.YTMAPI {
         /// <br />Must contain both <see cref="videoIDs.VideoID"/> and <see cref="videoIDs.SetVideoID"/> values.
         /// </param>
         /// <returns>Status String or full response</returns>
-        public static string RemovePlaylistItems(string playlistID, List<(string VideoID, string SetVideoID)> videoIDs) {
+        public static string RemovePlaylistItems(string playlistID, IEnumerable<(string VideoID, string SetVideoID)> videoIDs) {
             // videos parameter python input type: List[Dict[KT, VT]]
             // description: List of PlaylistItems, see `get_playlist()`. Must contain videoId and setVideoId
             var videos = videoIDs.Select(v => new Dictionary<string, string>() {

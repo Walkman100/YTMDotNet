@@ -160,7 +160,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Subscribe to artists. Adds the artists to your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
-        public static SubscribeResult SubscribeArtists(List<string> channelIDs) {
+        public static SubscribeResult SubscribeArtists(IEnumerable<string> channelIDs) {
             var pyChannelIDs = new Python.Runtime.PyList();
             foreach (string channelID in channelIDs)
                 pyChannelIDs.Append(new Python.Runtime.PyString(channelID));
@@ -177,7 +177,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Unsubscribe from artists. Removes the artists from your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
-        public static SubscribeResult UnsubscribeArtists(List<string> channelIDs) {
+        public static SubscribeResult UnsubscribeArtists(IEnumerable<string> channelIDs) {
             var pyChannelIDs = new Python.Runtime.PyList();
             foreach (string channelID in channelIDs)
                 pyChannelIDs.Append(new Python.Runtime.PyString(channelID));

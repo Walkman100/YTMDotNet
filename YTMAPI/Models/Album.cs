@@ -13,7 +13,7 @@ namespace YTMDotNet.YTMAPI.Models {
     }
 
     class AlbumTrack : ItemWithTokens {
-        public string Artists;
+        public List<ItemBasic> Artists;
         public string Album;
         public LikeStatus LikeStatus;
         public bool IsAvailable;

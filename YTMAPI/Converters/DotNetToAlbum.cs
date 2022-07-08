@@ -23,7 +23,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 dict => new AlbumTrack() {
                     BrowseID = dict["videoId"] as string,
                     Title = dict["title"] as string,
-                    Artists = dict["artists"]?.ToString(),
+                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as List<object>),
                     Album = dict["album"]?.ToString(),
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>),
