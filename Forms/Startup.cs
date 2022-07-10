@@ -91,7 +91,7 @@ namespace YTMDotNet.Forms {
 
             while (true) {
                 if (!File.Exists(Helpers.Settings.HeadersPath) || string.IsNullOrWhiteSpace(File.ReadAllText(Helpers.Settings.HeadersPath))) {
-                    HeadersInput inputDialog = new(this) {
+                    var inputDialog = new HeadersInput(this) {
                         Text = "Authentication",
                         MainInstruction = "Paste Headers",
                         Content = "See ytmusicapi.readthedocs.io/en/latest/setup.html"
@@ -148,6 +148,8 @@ namespace YTMDotNet.Forms {
             loadingTextUpdateCancel.Cancel();
             Application.DoEvents();
             lblLoading.Text = "Switching Windows...";
+
+            new Tests().Show();
         }
 
         private string GetPythonInstall() {
