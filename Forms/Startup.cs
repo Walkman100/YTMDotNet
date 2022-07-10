@@ -146,6 +146,7 @@ namespace YTMDotNet.Forms {
             }
 
             loadingTextUpdateCancel.Cancel();
+            Application.DoEvents();
             lblLoading.Text = "Switching Windows...";
         }
 
@@ -187,7 +188,7 @@ namespace YTMDotNet.Forms {
         }
         private void YTMALoginCheck() {
             using (var YTM = new YTMAPI.PyYTMAPI()) {
-                _ = YTM.API.search("Oasis Wonderwall");
+                _ = YTM.API.get_library_songs(limit: 1);
             }
         }
     }
