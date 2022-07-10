@@ -1,21 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class Helpers {
         // T-enabled Enum.Parse
-        public static TEnum EnumParse<TEnum>(string value, bool ignoreCase = true) where TEnum : struct =>
-            (TEnum)Enum.Parse(typeof(TEnum), value, ignoreCase);
-        public static TEnum? EnumParseNullable<TEnum>(string value, bool ignoreCase = true) where TEnum : struct =>
-            string.IsNullOrEmpty(value) ? null : (TEnum)Enum.Parse(typeof(TEnum), value, ignoreCase);
-
-        // get default value instead of exception on missing key: https://stackoverflow.com/a/33223183/2999220
-
-        /// <summary>Gets the value associated with the specified key, or default if it isn't contained in the <see cref="IDictionary{TKey, TValue}"/>.</summary>
-        /// <param name="defaultValue">Value to return if <paramref name="key"/> is not found in the <see cref="IDictionary{TKey, TValue}"/>.</param>
-        public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue = default) =>
-            dict.TryGetValue(key, out TValue value) ? value : defaultValue;
+        public static TEnum EnumParse<TEnum>(string value, bool ignoreCase = true) where TEnum : struct, Enum =>
+            WalkmanLibExtensions.Parse<TEnum>(value, ignoreCase);
+        public static TEnum? EnumParseNullable<TEnum>(string value, bool ignoreCase = true) where TEnum : struct, Enum =>
+            WalkmanLibExtensions.NullableParseEnum<TEnum>(value, ignoreCase);
 
         /// <summary>Duplicate of the <see cref="int.TryParse(string, out int)"/> method except with <see cref="NumberFormatInfo.InvariantInfo"/> instead of <see cref="NumberFormatInfo.CurrentInfo"/></summary>
         public static bool TryParse(string s, out int result) =>
@@ -62,7 +54,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 _ => throw new InvalidCastException($"Cannot convert {input.GetType().FullName} to ulong")
             };
 
-        public static string OrderToString(Models.Order order) => 
+        public static string OrderToString(Models.Order order) =>
             order == Models.Order.Default ? null : order.ToString().ToLowerInvariant();
     }
 }

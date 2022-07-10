@@ -43,9 +43,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Startup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Startup.Designer.cs">
+      <DependentUpon>Startup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HeadersInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HeadersInput.Designer.cs">
+      <DependentUpon>HeadersInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Properties\Application.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="YTMAPI\PyYTMAPI.cs" />
+    <Compile Include="YTMAPI\Browsing.cs" />
+    <Compile Include="YTMAPI\Library.cs" />
+    <Compile Include="YTMAPI\Playlists.cs" />
+    <Compile Include="YTMAPI\Search.cs" />
+    <Compile Include="YTMAPI\Uploads.cs" />
+    <Compile Include="YTMAPI\Watch.cs" />
+    <Compile Include="YTMAPI\Converters\ToDotNet.cs" />
+    <Compile Include="YTMAPI\Converters\Helpers.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToAddPlaylistItemsResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToAlbum.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToArtistAlbums.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryAlbums.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryArtists.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryEditTrackStatus.cs" />
@@ -54,40 +91,21 @@
     <Compile Include="YTMAPI\Converters\DotNetToLibraryPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryRateResult.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryRemoveResult.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToLibrarySubscribeArtist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLibraryTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToLyrics.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToPlaylist.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToPlaylistDeleteResult.cs" />
+    <Compile Include="YTMAPI\Converters\DotNetToSearchResults.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToTrack.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUploadAlbum.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUploadTracks.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUser.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToUserPlaylists.cs" />
     <Compile Include="YTMAPI\Converters\DotNetToWatchPlaylist.cs" />
-    <Compile Include="YTMAPI\Converters\Helpers.cs" />
-    <Compile Include="YTMAPI\Converters\DotNetToLibrarySubscribeArtist.cs" />
-    <Compile Include="YTMAPI\Library.cs" />
     <Compile Include="YTMAPI\Models\AddPlaylistItemsResult.cs" />
     <Compile Include="YTMAPI\Models\Album.cs" />
     <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
-    <Compile Include="YTMAPI\Browsing.cs" />
-    <Compile Include="YTMAPI\Converters\DotNetToArtist.cs" />
-    <Compile Include="YTMAPI\Converters\DotNetToGeneral.cs" />
-    <Compile Include="YTMAPI\Converters\DotNetToSearchResults.cs" />
-    <Compile Include="YTMAPI\Converters\ToDotNet.cs" />
-    <Compile Include="Forms\HeadersInput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\HeadersInput.Designer.cs">
-      <DependentUpon>HeadersInput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Startup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Startup.Designer.cs">
-      <DependentUpon>Startup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="YTMAPI\Models\Artist.cs" />
     <Compile Include="YTMAPI\Models\DeleteResult.cs" />
     <Compile Include="YTMAPI\Models\EditTrackStatusResult.cs" />
@@ -106,44 +124,31 @@
     <Compile Include="YTMAPI\Models\PrivacyStatus.cs" />
     <Compile Include="YTMAPI\Models\RateResult.cs" />
     <Compile Include="YTMAPI\Models\RemoveHistoryResult.cs" />
+    <Compile Include="YTMAPI\Models\SearchResult.cs" />
     <Compile Include="YTMAPI\Models\SubscribeResult.cs" />
+    <Compile Include="YTMAPI\Models\Thumbnail.cs" />
+    <Compile Include="YTMAPI\Models\Track.cs" />
     <Compile Include="YTMAPI\Models\UploadAlbum.cs" />
     <Compile Include="YTMAPI\Models\UploadTrack.cs" />
+    <Compile Include="YTMAPI\Models\User.cs" />
     <Compile Include="YTMAPI\Models\WatchPlaylist.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
-    <Compile Include="YTMAPI\Models\SearchResult.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Playlist.cs" />
-    <Compile Include="YTMAPI\Models\Thumbnail.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Track.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Video.cs" />
-    <Compile Include="Properties\Application.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WalkmanLib\WalkmanLibArgHandler.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibDotNet.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibExtensions.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibTheming.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
     <Compile Include="WalkmanLib\CustomMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WalkmanLib\CustomMsgBox.Designer.cs">
       <DependentUpon>CustomMsgBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WalkmanLib\WalkmanLibArgHandler.cs" />
-    <Compile Include="WalkmanLib\WalkmanLibDotNet.cs" />
-    <Compile Include="WalkmanLib\WalkmanLibTheming.cs" />
-    <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
-    <Compile Include="YTMAPI\Models\Track.cs" />
-    <Compile Include="YTMAPI\Models\User.cs" />
-    <Compile Include="YTMAPI\Playlists.cs" />
-    <Compile Include="YTMAPI\Search.cs" />
-    <Compile Include="YTMAPI\Uploads.cs" />
-    <Compile Include="YTMAPI\Watch.cs" />
-    <Compile Include="YTMAPI\PyYTMAPI.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="WalkmanLib\CustomMsgBox.resx">
       <DependentUpon>CustomMsgBox.cs</DependentUpon>
