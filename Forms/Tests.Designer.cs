@@ -37,6 +37,7 @@ namespace YTMDotNet.Forms {
             this.btnAll.TabIndex = 0;
             this.btnAll.Text = "Test All";
             this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // btnOne
             // 
@@ -46,6 +47,7 @@ namespace YTMDotNet.Forms {
             this.btnOne.TabIndex = 1;
             this.btnOne.Text = "<- Test";
             this.btnOne.UseVisualStyleBackColor = true;
+            this.btnOne.Click += new System.EventHandler(this.btnOne_Click);
             // 
             // btnClose
             // 
@@ -57,6 +59,7 @@ namespace YTMDotNet.Forms {
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // cbxTestSelect
             // 
