@@ -8,25 +8,25 @@ namespace YTMDotNet.YTMAPI.Converters {
             new AlbumFull() {
                 Title = input["title"] as string,
                 Type = Helpers.EnumParse<AlbumType>(input["type"] as string),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[]),
                 Description = input.GetValue("description") as string,
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
                 Year = WalkmanLibExtensions.NullableParseInt(input["year"] as string),
                 TrackCount = (int)input["trackCount"],
                 Duration = input["duration"] as string,
                 BrowseID = input["audioPlaylistId"] as string,
-                Tracks = GetTracks(input["tracks"] as List<object>),
+                Tracks = GetTracks(input["tracks"] as object[]),
             };
 
-        private static List<Track> GetTracks(List<object> input) =>
+        private static List<Track> GetTracks(object[] input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new Track() {
                     BrowseID = dict["videoId"] as string,
                     Title = dict["title"] as string,
-                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as List<object>),
+                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as object[]),
                     AlbumName = dict["album"]?.ToString(),
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
-                    Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>),
+                    Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as object[]),
                     IsAvailable = (bool)dict["isAvailable"],
                     IsExplicit = (bool)dict["isExplicit"],
                     Duration = dict["duration"] as string,

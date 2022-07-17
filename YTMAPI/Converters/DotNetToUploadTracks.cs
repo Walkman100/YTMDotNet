@@ -13,11 +13,11 @@ namespace YTMDotNet.YTMAPI.Converters {
                 BrowseID = input["videoId"] as string,
                 Title = input["title"] as string,
                 Duration = input["duration"] as string,
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
                 AlbumName = (input["album"] as Dictionary<string, object>)?["name"] as string,
                 AlbumID = (input["album"] as Dictionary<string, object>)?["id"] as string,
                 LikeStatus = Helpers.EnumParse<LikeStatus>(input["likeStatus"] as string),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[]),
             };
     }
 }

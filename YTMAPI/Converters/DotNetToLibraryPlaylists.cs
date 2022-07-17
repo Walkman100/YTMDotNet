@@ -11,7 +11,7 @@ namespace YTMDotNet.YTMAPI.Converters {
             new PlaylistBasic() {
                 Title = input["title"] as string,
                 BrowseID = input["playlistId"] as string,
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[]),
                 TrackCount = input.GetValue("count") as int?
             };
     }

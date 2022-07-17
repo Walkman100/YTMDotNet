@@ -11,10 +11,10 @@ namespace YTMDotNet.YTMAPI.Converters {
             new AlbumBasic() {
                 BrowseID = input["browseId"] as string,
                 Title = input["title"] as string,
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[]),
                 Type = Helpers.EnumParseNullable<AlbumType>(input.GetValue("type") as string),
                 Year = input.GetValue("year") as int?,
-                Artists = DotNetToGeneral.GetSimpleItems(input.GetValue("artists") as List<object>)
+                Artists = DotNetToGeneral.GetSimpleItems(input.GetValue("artists") as object[])
             };
     }
 }

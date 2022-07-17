@@ -29,8 +29,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Duration = input["duration"] as string,
                 Year = input["year"] as int?,
                 IsExplicit = (bool)input["isExplicit"],
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
         private static Models.SearchResults.Video GetVideo(Dictionary<string, object> input) =>
             new Models.SearchResults.Video() {
@@ -39,8 +39,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                 BrowseID = input["videoId"] as string,
                 Duration = input["duration"] as string,
                 Year = input["year"] as int?,
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
         private static Models.SearchResults.Album GetAlbum(Dictionary<string, object> input) =>
             new Models.SearchResults.Album() {
@@ -50,8 +50,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Year = input["year"] as int?,
                 BrowseID = input["browseId"] as string,
                 IsExplicit = (bool)input["isExplicit"],
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
         private static Models.SearchResults.Artist GetArtist(Dictionary<string, object> input) =>
             new Models.SearchResults.Artist() {
@@ -59,7 +59,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 ShuffleID = input["shuffleId"] as string,
                 RadioID = input["radioId"] as string,
                 BrowseID = input["browseId"] as string,
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
         private static Models.SearchResults.Playlist GetPlaylist(Dictionary<string, object> input) =>
             new Models.SearchResults.Playlist() {
@@ -67,7 +67,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 ItemCount = input["itemCount"] as string,
                 Author = input["author"] as string,
                 BrowseID = input["browseId"] as string,
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
     }
 }

@@ -34,10 +34,10 @@ namespace YTMDotNet.YTMAPI.Converters {
         private static WatchTrackStreamingData GetStreamingData(Dictionary<string, object> input) =>
             new WatchTrackStreamingData() {
                 ExpiresInSeconds = input["expiresInSeconds"] as string,
-                Formats = GetStreamingDataFormats(input["formats"] as List<object>),
-                AdaptiveFormats = GetStreamingDataAdaptiveFormats(input["adaptiveFormats"] as List<object>)
+                Formats = GetStreamingDataFormats(input["formats"] as object[]),
+                AdaptiveFormats = GetStreamingDataAdaptiveFormats(input["adaptiveFormats"] as object[])
             };
-        private static List<WatchTrackFormat> GetStreamingDataFormats(List<object> input) =>
+        private static List<WatchTrackFormat> GetStreamingDataFormats(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new WatchTrackFormat() {
                     ITag = (int)dict["itag"],
@@ -58,7 +58,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                     AudioChannels = (int)dict["audioChannels"],
                     SignatureCipher = dict["signatureCipher"] as string
                 }).ToList();
-        private static List<WatchTrackFormat> GetStreamingDataAdaptiveFormats(List<object> input) =>
+        private static List<WatchTrackFormat> GetStreamingDataAdaptiveFormats(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new WatchTrackFormat {
                     ITag = (int)dict["itag"],
@@ -95,7 +95,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 IsCrawlable = (bool)input["isCrawlable"],
                 Thumbnails = DotNetToGeneral.GetThumbnails(
                     (input["thumbnail"] as Dictionary<string, object>)
-                    ["thumbnails"] as List<object>),
+                    ["thumbnails"] as object[]),
                 AverageRating = (double?)input.GetValue("averageRating"),
                 AllowRatings = (bool)input["allowRatings"],
                 ViewCount = input["viewCount"] as string,
@@ -116,7 +116,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Description = MFDR["description"] as string,
                 Thumbnails = DotNetToGeneral.GetThumbnails(
                     (MFDR["thumbnail"] as Dictionary<string, object>)
-                    ["thumbnails"] as List<object>),
+                    ["thumbnails"] as object[]),
                 SiteName = MFDR["siteName"] as string,
                 AppName = MFDR["appName"] as string,
                 AndroidPackage = MFDR["androidPackage"] as string,
@@ -134,22 +134,22 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Unlisted = (bool)MFDR["unlisted"],
                 Paid = (bool)MFDR["paid"],
                 FamilySafe = (bool)MFDR["familySafe"],
-                Tags = (MFDR["tags"] as List<object>).Select(s => s as string).ToList(),
-                AvailableCountries = (MFDR["availableCountries"] as List<object>).Select(s => s as string).ToList(),
+                Tags = (MFDR["tags"] as object[]).Select(s => s as string).ToList(),
+                AvailableCountries = (MFDR["availableCountries"] as object[]).Select(s => s as string).ToList(),
                 PageOwnerName = MFDR_POD["name"] as string,
                 PageOwnerExternalChannelID = MFDR_POD["externalChannelId"] as string,
                 PageOwnerYouTubeProfileURL = MFDR_POD["youtubeProfileUrl"] as string,
                 BrowseID = MFDR_VD["externalVideoId"] as string,
                 VideoDetailsDurationInSeconds = MFDR_VD["durationSeconds"] as string,
                 VideoDetailsDurationISO8601 = MFDR_VD["durationIso8601"] as string,
-                LinkAlternates = GetLinkAlternates(MFDR["linkAlternates"] as List<object>),
+                LinkAlternates = GetLinkAlternates(MFDR["linkAlternates"] as object[]),
                 ViewCount = MFDR["viewCount"] as string,
                 Category = MFDR["category"] as string,
                 PublishDate = System.DateTime.Parse(MFDR["publishDate"] as string),
                 UploadDate = System.DateTime.Parse(MFDR["uploadDate"] as string)
             };
         }
-        private static List<WatchTrackLinkAlternates> GetLinkAlternates(List<object> input) =>
+        private static List<WatchTrackLinkAlternates> GetLinkAlternates(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new WatchTrackLinkAlternates() {
                     HREF_URL = dict["hrefUrl"] as string,

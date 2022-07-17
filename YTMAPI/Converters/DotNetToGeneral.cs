@@ -4,7 +4,7 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToGeneral {
-        public static List<Thumbnail> GetThumbnails(List<object> input) =>
+        public static List<Thumbnail> GetThumbnails(object[] input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new Thumbnail() {
                     URL = dict["url"] as string,
@@ -13,7 +13,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 }).ToList();
 
         /// <summary>Note this takes "name" and "id" field</summary>
-        public static List<ItemBasic> GetSimpleItems(List<object> input) =>
+        public static List<ItemBasic> GetSimpleItems(object[] input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new ItemBasic() {
                     Title = dict["name"] as string,
@@ -23,22 +23,22 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static APIResultResponseContext GetResponseContext(Dictionary<string, object> input) =>
             input == null ? null : new APIResultResponseContext() {
                 VisitorData = input["visitorData"] as string,
-                ServiceTrackingParams = GetTrackingParams(input["serviceTrackingParams"] as List<object>),
+                ServiceTrackingParams = GetTrackingParams(input["serviceTrackingParams"] as object[]),
             };
-        private static List<APIResultTrackingParam> GetTrackingParams(List<object> input) =>
+        private static List<APIResultTrackingParam> GetTrackingParams(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new APIResultTrackingParam() {
                     Service = dict["service"] as string,
-                    Params = GetParams(dict["params"] as List<object>)
+                    Params = GetParams(dict["params"] as object[])
                 }).ToList();
-        private static List<APIResultParam> GetParams(List<object> input) =>
+        private static List<APIResultParam> GetParams(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new APIResultParam() {
                     Key = dict["key"] as string,
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
 
-        public static List<string> GetText(List<object> input) =>
+        public static List<string> GetText(object[] input) =>
             input.Select(obj => (obj as Dictionary<string, object>)["text"] as string).ToList();
     }
 }

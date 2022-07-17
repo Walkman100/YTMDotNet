@@ -7,17 +7,17 @@ namespace YTMDotNet.YTMAPI.Converters {
         public static APIResult Get(Dictionary<string, object> input) =>
             new APIResult() {
                 ResponseContext = DotNetToGeneral.GetResponseContext(input["responseContext"] as Dictionary<string, object>),
-                FeedbackResponses = GetFeedbackResponses(input["feedbackResponses"] as List<object>),
-                Actions = GetActions(input["actions"] as List<object>)
+                FeedbackResponses = GetFeedbackResponses(input["feedbackResponses"] as object[]),
+                Actions = GetActions(input["actions"] as object[])
             };
 
-        private static List<APIResultFeedbackResponse> GetFeedbackResponses(List<object> input) =>
+        private static List<APIResultFeedbackResponse> GetFeedbackResponses(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new APIResultFeedbackResponse() {
                     IsProcessed = (bool)dict["isProcessed"]
                 }).ToList();
 
-        private static List<APIResultAction> GetActions(List<object> input) =>
+        private static List<APIResultAction> GetActions(object[] input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => {
                     var NotificationActionRenderer = ((dict["addToToastAction"] as Dictionary<string, object>)
@@ -26,7 +26,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                     return new APIResultAction() {
                         ClickTrackingParams = dict["clickTrackingParams"] as string,
                         AddToToastAction_Item_NotificationActionRenderer = new APIResultActionNotificationActionRenderer() {
-                            ResponseText_Runs_Text = DotNetToGeneral.GetText((NotificationActionRenderer["responseText"] as Dictionary<string, object>)["runs"] as List<object>),
+                            ResponseText_Runs_Text = DotNetToGeneral.GetText((NotificationActionRenderer["responseText"] as Dictionary<string, object>)["runs"] as object[]),
                             TrackingParams = NotificationActionRenderer["trackingParams"] as string
                         }
                     };

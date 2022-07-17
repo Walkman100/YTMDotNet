@@ -14,7 +14,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 ShuffleID = input["shuffleId"] as string,
                 RadioID = input["radioId"] as string,
                 Subscribers = Helpers.ObjectAsString(input["subscribers"]),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
     }
 }

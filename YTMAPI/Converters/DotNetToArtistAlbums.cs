@@ -13,7 +13,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 BrowseID = input["browseId"] as string,
                 Type = Helpers.EnumParse<AlbumType>(input["type"] as string),
                 Year = input["year"] as int?,
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>)
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[])
             };
     }
 }

@@ -8,26 +8,26 @@ namespace YTMDotNet.YTMAPI.Converters {
             new AlbumFull() {
                 Title = input["title"] as string,
                 Type = Helpers.EnumParse<AlbumType>(input["type"] as string),
-                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as List<object>),
-                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),
+                Thumbnails = DotNetToGeneral.GetThumbnails(input["thumbnails"] as object[]),
+                Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as object[]),
                 TrackCount = (int)input["trackCount"],
                 Duration = input["duration"] as string,
                 BrowseID = input["audioPlaylistId"] as string,
-                Tracks = GetTracks(input["tracks"] as List<object>),
+                Tracks = GetTracks(input["tracks"] as object[]),
             };
 
-        private static List<Track> GetTracks(List<object> input) =>
+        private static List<Track> GetTracks(object[] input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => new Track() {
                     UniqueID = dict["entityId"] as string,
                     BrowseID = dict["videoId"] as string,
                     Title = dict["title"] as string,
                     Duration = dict["duration"] as string,
-                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as List<object>),
+                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as object[]),
                     AlbumName = (dict["album"] as Dictionary<string, object>)["name"] as string,
                     AlbumID = (dict["album"] as Dictionary<string, object>)["id"] as string,
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
-                    Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>),
+                    Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as object[]),
                 }).ToList();
     }
 }

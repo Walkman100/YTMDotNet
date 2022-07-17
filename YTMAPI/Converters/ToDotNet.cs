@@ -32,38 +32,14 @@ namespace YTMDotNet.YTMAPI.Converters {
                 items.Add(key, toDotNet(value[key]));
             return items;
         }
-        private static bool tryNamedDict(dynamic value, out Dictionary<string, object> result) {
-            try {
-                if (!value.ToString().StartsWith("{")) {
-                    result = null;
-                    return false;
-                }
-                result = convertNamedDict(value);
-                return true;
-            } catch {
-                result = null;
-                return false;
-            }
-        }
+        private static object[] convertUnnamedArray(dynamic value) {
+            int arrayLength = value.__len__();
+            object[] items = new object[arrayLength];
 
-        private static List<object> convertUnnamedArray(dynamic value) {
-            var items = new List<object>();
-            foreach (object item in value)
-                items.Add(toDotNet(item));
-            return items;
-        }
-        private static bool tryUnnamedArray(dynamic value, out List<object> result) {
-            try {
-                if (!value.ToString().StartsWith("[")) {
-                    result = null;
-                    return false;
-                }
-                result = convertUnnamedArray(value);
-                return true;
-            } catch {
-                result = null;
-                return false;
+            for (int i = 0; i < arrayLength; i++) {
+                items[i] = toDotNet(value[i]);
             }
+            return items;
         }
         #endregion
     }
