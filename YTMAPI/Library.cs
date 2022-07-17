@@ -47,6 +47,10 @@ namespace YTMDotNet.YTMAPI {
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_subscriptions
+        /// <summary>Gets the artists the user has subscribed to.</summary>
+        /// <param name="limit">Number of artists to return</param>
+        /// <param name="order">Order of artists to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
+        /// <returns></returns>
         public static List<ArtistBasic> GetSubscriptions(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
