@@ -13,24 +13,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Description = input["description"] as string,
                 TrackCount = (int)input["trackCount"],
                 SuggestionsToken = input["suggestions_token"] as string,
-                Tracks = GetTracks(input["tracks"] as object[])
+                Tracks = (input["tracks"] as object[]).Select(DotNetToTrack.Get).ToList()
             };
-
-        private static List<Track> GetTracks(object[] input) =>
-            input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new Track() {
-                    BrowseID = dict["videoId"] as string,
-                    Title = dict["title"] as string,
-                    Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as object[]),
-                    AlbumName = (dict["album"] as Dictionary<string, object>)?["name"] as string,
-                    AlbumID = (dict["album"] as Dictionary<string, object>)?["id"] as string,
-                    LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
-                    Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as object[]),
-                    IsAvailable = (bool)dict["isAvailable"],
-                    IsExplicit = (bool)dict["isExplicit"],
-                    Duration = dict["duration"] as string,
-                    FeedbackTokenAdd = (dict.GetValue("feedbackTokens") as Dictionary<string, object>)?["add"] as string,
-                    FeedbackTokenRemove = (dict.GetValue("feedbackTokens") as Dictionary<string, object>)?["remove"] as string
-                }).ToList();
     }
 }

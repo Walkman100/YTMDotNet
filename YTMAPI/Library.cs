@@ -29,7 +29,7 @@ namespace YTMDotNet.YTMAPI {
                 get_results = YTM.API.get_library_songs(limit, validate_responses, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> tracks = ToDotNet.FromList(get_results);
-            return DotNetToLibraryTracks.Get(tracks);
+            return DotNetToTrack.Get(tracks);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_artists
@@ -71,7 +71,7 @@ namespace YTMDotNet.YTMAPI {
                 get_results = YTM.API.get_library_albums(limit, Converters.Helpers.OrderToString(order));
             }
             IEnumerable<Dictionary<string, object>> albums = ToDotNet.FromList(get_results);
-            return DotNetToLibraryAlbums.Get(albums);
+            return DotNetToAlbumBasic.Get(albums);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_liked_songs

@@ -32,7 +32,7 @@ namespace YTMDotNet.YTMAPI {
                 get_results = YTM.API.get_artist_albums(channelID, _params);
             }
             IEnumerable<Dictionary<string, object>> list = ToDotNet.FromList(get_results);
-            return DotNetToArtistAlbums.Get(list);
+            return DotNetToAlbumBasic.Get(list);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_user
@@ -89,7 +89,7 @@ namespace YTMDotNet.YTMAPI {
                     get_results = YTM.API.get_song(videoID, signatureTimestamp: signatureTimestamp);
             }
             Dictionary<string, object> track = ToDotNet.FromDict(get_results);
-            return DotNetToTrack.Get(track);
+            return DotNetToWatchTrack.Get(track);
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_lyrics

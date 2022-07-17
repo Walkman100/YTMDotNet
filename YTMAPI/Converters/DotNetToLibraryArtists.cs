@@ -3,7 +3,7 @@ using System.Linq;
 using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
-    class DotNetToLibraryArtists {
+    static class DotNetToLibraryArtists {
         public static List<ArtistBasic> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetArtist).ToList();
 

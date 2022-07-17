@@ -24,7 +24,7 @@ namespace YTMDotNet.YTMAPI.Converters {
                     BrowseID = dict["videoId"] as string,
                     Title = dict["title"] as string,
                     Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as object[]),
-                    AlbumName = dict["album"]?.ToString(),
+                    AlbumName = dict["album"]?.ToString(), // this is why can't use DotNetToTrack.Get - all other tracks use key [album][name] or [album][id], not just [album]
                     LikeStatus = Helpers.EnumParse<LikeStatus>(dict["likeStatus"] as string),
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as object[]),
                     IsAvailable = (bool)dict["isAvailable"],
