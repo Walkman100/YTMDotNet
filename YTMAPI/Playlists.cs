@@ -41,7 +41,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="title">Optional. New title for the playlist</param>
         /// <param name="description">Optional. New description for the playlist</param>
         /// <param name="privacyStatus">Optional. New privacy status for the playlist</param>
-        /// <param name="moveItem">Optional. Move one item before another. Items are specified by <see cref="PlaylistTrack.SetVideoID"/>, see <see cref="GetPlaylist"/></param>
+        /// <param name="moveItem">Optional. Move one item before another. Items are specified by <see cref="Track.UniqueID"/>, see <see cref="GetPlaylist"/></param>
         /// <param name="addPlaylistID">Optional. ID of another playlist to add to this playlist</param>
         /// <returns>Status String or full response</returns>
         public static string EditPlaylist(string playlistID, string title = null, string description = null, PrivacyStatus? privacyStatus = null, (string, string)? moveItem = null, string addPlaylistID = null) {
@@ -58,7 +58,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Delete a playlist.</summary>
         /// <param name="playlistID">Playlist id</param>
         /// <returns>Status String or full response</returns>
-        public static DeleteResult DeletePlaylist(string playlistID) {
+        public static APIResult DeletePlaylist(string playlistID) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.delete_playlist(playlistID);
@@ -87,8 +87,8 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Remove songs from an existing playlist</summary>
         /// <param name="playlistID">Playlist id</param>
         /// <param name="videoIDs">
-        /// List of playlist items. Get SetVideoID from <see cref="PlaylistTrack.SetVideoID"/> returned by <see cref="GetPlaylist"/>.
-        /// <br />Must contain both <see cref="videoIDs.VideoID"/> and <see cref="videoIDs.SetVideoID"/> values.
+        /// List of playlist items. Get SetVideoID from <see cref="Track.UniqueID"/> returned by <see cref="GetPlaylist"/>.
+        /// <br />Must contain both <paramref name="videoIDs"/>.VideoID and <paramref name="videoIDs"/>.SetVideoID values.
         /// </param>
         /// <returns>Status String or full response</returns>
         public static string RemovePlaylistItems(string playlistID, IEnumerable<(string VideoID, string SetVideoID)> videoIDs) {

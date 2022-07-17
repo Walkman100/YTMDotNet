@@ -4,31 +4,33 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToLibraryRemoveResult {
-        public static RemoveHistoryResult Get(Dictionary<string, object> input) {
+        public static APIResult Get(Dictionary<string, object> input) {
             var ResponseContext = input["responseContext"] as Dictionary<string, object>;
-            return new RemoveHistoryResult() {
-                VisitorData = ResponseContext["visitorData"] as string,
-                ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
+            return new APIResult() {
+                ResponseContext = new APIResultResponseContext() {
+                    VisitorData = ResponseContext["visitorData"] as string,
+                    ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
+                },
                 FeedbackResponses = GetResponses(input["feedbackResponses"] as List<object>)
             };
         }
 
-        private static List<HistoryResultTrackingParam> GetTrackingParams(List<object> input) =>
+        private static List<APIResultTrackingParam> GetTrackingParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new HistoryResultTrackingParam() {
+                dict => new APIResultTrackingParam() {
                     Service = dict["service"] as string,
                     Params = GetParams(dict["params"] as List<object>)
                 }).ToList();
-        private static List<HistoryResultParam> GetParams(List<object> input) =>
+        private static List<APIResultParam> GetParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new HistoryResultParam() {
+                dict => new APIResultParam() {
                     Key = dict["key"] as string,
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
 
-        private static List<FeedbackResponse> GetResponses(List<object> input) =>
+        private static List<APIResultFeedbackResponse> GetResponses(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new FeedbackResponse() {
+                dict => new APIResultFeedbackResponse() {
                     IsProcessed = (bool)dict["isProcessed"]
                 }).ToList();
     }

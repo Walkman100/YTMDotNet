@@ -99,7 +99,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Remove an item from the account's history. This method does currently not work with brand accounts</summary>
         /// <param name="feedbackTokens">Token to identify the item to remove, obtained from <see cref="GetHistory"/></param>
         /// <returns></returns>
-        public static RemoveHistoryResult RemoveHistoryItems(List<string> feedbackTokens) {
+        public static APIResult RemoveHistoryItems(List<string> feedbackTokens) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.remove_history_items(feedbackTokens);
@@ -113,7 +113,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="videoID">Video id</param>
         /// <param name="rating">One of 'LIKE', 'DISLIKE', 'INDIFFERENT'. 'INDIFFERENT' removes the previous rating and assigns no rating</param>
         /// <returns></returns>
-        public static RateResult RateTrack(string videoID, LikeStatus rating) {
+        public static APIResult RateTrack(string videoID, LikeStatus rating) {
             if (rating == LikeStatus.None || rating > LikeStatus.Dislike)
                 throw new System.ArgumentOutOfRangeException(nameof(rating));
             dynamic get_results;
@@ -128,7 +128,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Adds or removes a song from your library depending on the token provided.</summary>
         /// <param name="feedbackTokens">List of feedbackTokens obtained from authenticated requests to endpoints that return songs (e.g. <see cref="Browsing.GetAlbum"/>)</param>
         /// <returns></returns>
-        public static EditTrackStatusResult EditTrackStatus(List<string> feedbackTokens) {
+        public static APIResult EditTrackStatus(List<string> feedbackTokens) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.edit_song_library_status(feedbackTokens);
@@ -145,7 +145,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="playlistID">Playlist id</param>
         /// <param name="rating">One of 'LIKE', 'DISLIKE', 'INDIFFERENT'. 'INDIFFERENT' removes the playlist/album from the library</param>
         /// <returns></returns>
-        public static RateResult RatePlaylist(string playlistID, LikeStatus rating) {
+        public static APIResult RatePlaylist(string playlistID, LikeStatus rating) {
             if (rating == LikeStatus.None || rating > LikeStatus.Dislike)
                 throw new System.ArgumentOutOfRangeException(nameof(rating));
             dynamic get_results;
@@ -160,7 +160,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Subscribe to artists. Adds the artists to your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
-        public static SubscribeResult SubscribeArtists(IEnumerable<string> channelIDs) {
+        public static APIResult SubscribeArtists(IEnumerable<string> channelIDs) {
             var pyChannelIDs = new Python.Runtime.PyList();
             foreach (string channelID in channelIDs)
                 pyChannelIDs.Append(new Python.Runtime.PyString(channelID));
@@ -177,7 +177,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Unsubscribe from artists. Removes the artists from your library</summary>
         /// <param name="channelIDs">Artist channel ids</param>
         /// <returns></returns>
-        public static SubscribeResult UnsubscribeArtists(IEnumerable<string> channelIDs) {
+        public static APIResult UnsubscribeArtists(IEnumerable<string> channelIDs) {
             var pyChannelIDs = new Python.Runtime.PyList();
             foreach (string channelID in channelIDs)
                 pyChannelIDs.Append(new Python.Runtime.PyString(channelID));

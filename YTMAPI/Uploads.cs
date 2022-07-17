@@ -87,7 +87,7 @@ namespace YTMDotNet.YTMAPI {
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.delete_upload_entity
         /// <summary>Deletes a previously uploaded song or album</summary>
-        /// <param name="entityID">The entity id of the uploaded song or album, e.g. <see cref="UploadTrack.EntityID"/> retrieved from <see cref="GetLibraryUploadTracks"/></param>
+        /// <param name="entityID">The entity id of the uploaded song or album, e.g. <see cref="Track.UniqueID"/> retrieved from <see cref="GetLibraryUploadTracks"/></param>
         /// <returns>Status String or error</returns>
         public static string DeleteUploadEntity(string entityID) {
             dynamic get_results;

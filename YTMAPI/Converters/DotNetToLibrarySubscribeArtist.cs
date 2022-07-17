@@ -4,11 +4,13 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToLibrarySubscribeArtist {
-        public static SubscribeResult Get(Dictionary<string, object> input) {
+        public static APIResult Get(Dictionary<string, object> input) {
             var ResponseContext = input["responseContext"] as Dictionary<string, object>;
-            return new SubscribeResult() {
-                VisitorData = ResponseContext["visitorData"] as string,
-                ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
+            return new APIResult() {
+                ResponseContext = new APIResultResponseContext() {
+                    VisitorData = ResponseContext["visitorData"] as string,
+                    ServiceTrackingParams = GetTrackingParams(ResponseContext["serviceTrackingParams"] as List<object>),
+                },
                 Actions = GetActions(input["actions"] as List<object>),
                 TrackingParams = input["trackingParams"] as string,
                 FrameworkUpdates_EntityBatchUpdate = !input.ContainsKey("frameworkUpdates") ? null :
@@ -16,47 +18,47 @@ namespace YTMDotNet.YTMAPI.Converters {
             };
         }
 
-        private static List<RateResultTrackingParam> GetTrackingParams(List<object> input) =>
+        private static List<APIResultTrackingParam> GetTrackingParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new RateResultTrackingParam() {
+                dict => new APIResultTrackingParam() {
                     Service = dict["service"] as string,
                     Params = GetParams(dict["params"] as List<object>)
                 }).ToList();
-        private static List<RateResultParam> GetParams(List<object> input) =>
+        private static List<APIResultParam> GetParams(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new RateResultParam() {
+                dict => new APIResultParam() {
                     Key = dict["key"] as string,
                     Value = Helpers.ObjectAsString(dict["value"])
                 }).ToList();
 
-        private static List<SubscribeResultAction> GetActions(List<object> input) =>
+        private static List<APIResultAction> GetActions(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => {
                     if (dict.ContainsKey("addToToastAction")) {
                         var NotifictionTextRenderer = ((dict["addToToastAction"] as Dictionary<string, object>)
                                                             ["item"] as Dictionary<string, object>)
                                                             ["notificationTextRenderer"] as Dictionary<string, object>;
-                        return new SubscribeResultAction() {
+                        return new APIResultAction() {
                             ClickTrackingParams = dict["clickTrackingParams"] as string,
-                            AddToToastAction_Item_NotificationActionRenderer = new RateResultActionNotificationRenderer() {
-                                ResponseText_Runs = GetText((NotifictionTextRenderer["successResponseText"] as Dictionary<string, object>)["runs"] as List<object>),
+                            AddToToastAction_Item_NotificationActionRenderer = new APIResultActionNotificationActionRenderer() {
+                                ResponseText_Runs_Text = GetText((NotifictionTextRenderer["successResponseText"] as Dictionary<string, object>)["runs"] as List<object>),
                                 TrackingParams = NotifictionTextRenderer["trackingParams"] as string
                             }
                         };
                     } else if (dict.ContainsKey("runAttestationCommand")) {
                         var RunAttestationCommand = dict["runAttestationCommand"] as Dictionary<string, object>;
-                        return new SubscribeResultAction() {
+                        return new APIResultAction() {
                             ClickTrackingParams = dict["clickTrackingParams"] as string,
-                            RunAttestationCommand = new SubscribeResultActionRunAttestationCommand() {
+                            RunAttestationCommand = new APIResultActionRunAttestationCommand() {
                                 IDs = GetExternalChannelIDs(RunAttestationCommand["ids"] as List<object>),
                                 EngagementType = RunAttestationCommand["engagementType"] as string
                             }
                         };
                     } else if (dict.ContainsKey("updateSubscribeButtonAction")) {
                         var UpdateSubscribeButtonAction = dict["updateSubscribeButtonAction"] as Dictionary<string, object>;
-                        return new SubscribeResultAction() {
+                        return new APIResultAction() {
                             ClickTrackingParams = dict["clickTrackingParams"] as string,
-                            UpdateSubscribeButtonActiion = new SubscribeResultActionUpdateSubscribeButtonAction() {
+                            UpdateSubscribeButtonAction = new APIResultActionUpdateSubscribeButtonAction() {
                                 Subscribed = (bool)UpdateSubscribeButtonAction["subscribed"],
                                 ChannelID = UpdateSubscribeButtonAction["channelId"] as string
                             }
@@ -65,32 +67,30 @@ namespace YTMDotNet.YTMAPI.Converters {
                         throw new KeyNotFoundException("Unrecognised Action");
                     }
                 }).ToList();
-        private static List<Text> GetText(List<object> input) =>
+        private static List<string> GetText(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new Text() {
-                    TextM = dict["text"] as string
-                }).ToList();
-        private static List<SubscribeResultActionRunAttestationCommandID> GetExternalChannelIDs(List<object> input) =>
+                dict => dict["text"] as string
+            ).ToList();
+        private static List<string> GetExternalChannelIDs(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new SubscribeResultActionRunAttestationCommandID() {
-                    ExternalChannelID = dict["externalChannelId"] as string
-                }).ToList();
+                dict => dict["externalChannelId"] as string
+            ).ToList();
 
 
-        private static SubscribeResultFrameworkUpdatesEntityBatchUpdate GetEntityBatchUpdate(Dictionary<string, object> input) {
+        private static APIResultFrameworkUpdatesEntityBatchUpdate GetEntityBatchUpdate(Dictionary<string, object> input) {
             var Timestamp = input["timestamp"] as Dictionary<string, object>;
-            return new SubscribeResultFrameworkUpdatesEntityBatchUpdate() {
+            return new APIResultFrameworkUpdatesEntityBatchUpdate() {
                 Mutations = GetMutations(input["mutations"] as List<object>),
                 TimestampSeconds = Helpers.ObjectAsULong(Timestamp["seconds"]),
                 TimestampNanos = Helpers.ObjectAsULong(Timestamp["nanos"])
             };
         }
-        private static List<SubscribeResultFrameworkUpdatesEntityBatchUpdateMutation> GetMutations(List<object> input) =>
+        private static List<APIResultFrameworkUpdatesEntityBatchUpdateMutation> GetMutations(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
                 dict => {
                     var SubscriptionNotificationStateEntity = (dict["payload"] as Dictionary<string, object>)
                                         ["subscriptionNotificationStateEntity"] as Dictionary<string, object>;
-                    return new SubscribeResultFrameworkUpdatesEntityBatchUpdateMutation() {
+                    return new APIResultFrameworkUpdatesEntityBatchUpdateMutation() {
                         EntityKey = dict["entityKey"] as string,
                         Type = dict["type"] as string,
                         Payload_SubscriptionNotificationStateEntity_Key = SubscriptionNotificationStateEntity["key"] as string,
