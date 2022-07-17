@@ -9,7 +9,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="limit">How many songs to return. Default: 25</param>
         /// <param name="order">Order of songs to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns>List of uploaded songs.</returns>
-        public static List<UploadTrack> GetLibraryUploadTracks(int limit = 25, Order order = Order.Default) {
+        public static List<Track> GetLibraryUploadTracks(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_upload_songs(limit, Converters.Helpers.OrderToString(order));
@@ -23,7 +23,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="limit">Number of artists to return. Default: 25</param>
         /// <param name="order">Order of artists to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns>List of artists as returned by <see cref="Library.GetArtists"/></returns>
-        public static List<LibraryArtist> GetLibraryUploadArtists(int limit = 25, Order order = Order.Default) {
+        public static List<ArtistBasic> GetLibraryUploadArtists(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_upload_artists(limit, Converters.Helpers.OrderToString(order));
@@ -37,7 +37,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="limit">Number of albums to return. Default: 25</param>
         /// <param name="order">Order of albums to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns>List of albums as returned by <see cref="Library.GetAlbums"/></returns>
-        public static List<LibraryAlbum> GetLibraryUploadAlbums(int limit = 25, Order order = Order.Default) {
+        public static List<AlbumBasic> GetLibraryUploadAlbums(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_upload_albums(limit, Converters.Helpers.OrderToString(order));
@@ -51,7 +51,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="browseID">Browse id of the upload artist, i.e. from <see cref="GetLibraryUploadTracks"/></param>
         /// <param name="limit">Number of songs to return (increments of 25).</param>
         /// <returns>List of uploaded songs.</returns>
-        public static List<UploadTrack> GetLibraryUploadArtist(string browseID, int limit = 25) {
+        public static List<Track> GetLibraryUploadArtist(string browseID, int limit = 25) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_upload_artist(browseID, limit);
@@ -64,7 +64,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Get information and tracks of an album associated with uploaded tracks</summary>
         /// <param name="browseID">Browse id of the upload album, i.e. from <see cref="GetLibraryUploadTracks"/></param>
         /// <returns>Dictionary with title, description, artist and tracks.</returns>
-        public static UploadAlbum GetLibraryUploadAlbum(string browseID) {
+        public static AlbumFull GetLibraryUploadAlbum(string browseID) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_upload_album(browseID);

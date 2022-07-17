@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Python.Runtime, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5000fea6cba702dd, processorArchitecture=MSIL">
       <HintPath>packages\pythonnet.3.0.0-preview2022-06-03\lib\netstandard2.0\Python.Runtime.dll</HintPath>
     </Reference>
@@ -111,33 +110,22 @@
     <Compile Include="YTMAPI\Converters\DotNetToWatchPlaylist.cs" />
     <Compile Include="YTMAPI\Models\AddPlaylistItemsResult.cs" />
     <Compile Include="YTMAPI\Models\Album.cs" />
-    <Compile Include="YTMAPI\Models\ArtistAlbum.cs" />
     <Compile Include="YTMAPI\Models\Artist.cs" />
     <Compile Include="YTMAPI\Models\DeleteResult.cs" />
     <Compile Include="YTMAPI\Models\EditTrackStatusResult.cs" />
-    <Compile Include="YTMAPI\Models\HistoryTrack.cs" />
-    <Compile Include="YTMAPI\Models\Item.cs" />
-    <Compile Include="YTMAPI\Models\ItemBasic.cs" />
-    <Compile Include="YTMAPI\Models\ItemWithTokens.cs" />
-    <Compile Include="YTMAPI\Models\LibraryAlbum.cs" />
-    <Compile Include="YTMAPI\Models\LibraryArtist.cs" />
-    <Compile Include="YTMAPI\Models\LibraryTrack.cs" />
-    <Compile Include="YTMAPI\Models\LikeStatus.cs" />
+    <Compile Include="YTMAPI\Models\Enums.cs" />
+    <Compile Include="YTMAPI\Models\Item_Base.cs" />
     <Compile Include="YTMAPI\Models\Lyrics.cs" />
-    <Compile Include="YTMAPI\Models\LibraryPlaylist.cs" />
-    <Compile Include="YTMAPI\Models\Order.cs" />
     <Compile Include="YTMAPI\Models\Playlist.cs" />
-    <Compile Include="YTMAPI\Models\PrivacyStatus.cs" />
     <Compile Include="YTMAPI\Models\RateResult.cs" />
     <Compile Include="YTMAPI\Models\RemoveHistoryResult.cs" />
     <Compile Include="YTMAPI\Models\SearchResult.cs" />
     <Compile Include="YTMAPI\Models\SubscribeResult.cs" />
-    <Compile Include="YTMAPI\Models\Thumbnail.cs" />
     <Compile Include="YTMAPI\Models\Track.cs" />
-    <Compile Include="YTMAPI\Models\UploadAlbum.cs" />
-    <Compile Include="YTMAPI\Models\UploadTrack.cs" />
     <Compile Include="YTMAPI\Models\User.cs" />
+    <Compile Include="YTMAPI\Models\Video.cs" />
     <Compile Include="YTMAPI\Models\WatchPlaylist.cs" />
+    <Compile Include="YTMAPI\Models\WatchTrack.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Album.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Artist.cs" />
     <Compile Include="YTMAPI\Models\SearchResults\Playlist.cs" />

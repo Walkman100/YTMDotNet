@@ -284,8 +284,8 @@ namespace YTMDotNet.Forms {
             outputTestStart("Playlists.RemovePlaylistItems");
             runTest(() => {
                 var videoIDs = new List<(string VideoID, string SetVideoID)>() {
-                    (playlist.Tracks[8].BrowseID, playlist.Tracks[8].SetVideoID),
-                    (playlist.Tracks[9].BrowseID, playlist.Tracks[9].SetVideoID)
+                    (playlist.Tracks[8].BrowseID, playlist.Tracks[8].UniqueID),
+                    (playlist.Tracks[9].BrowseID, playlist.Tracks[9].UniqueID)
                 };
                 status = YTMAPI.Playlists.RemovePlaylistItems(playlistID, videoIDs);
             });
@@ -295,7 +295,7 @@ namespace YTMDotNet.Forms {
 
             status = null;
             outputTestStart("Playlists.EditPlaylist_Move");
-            runTest(() => status = YTMAPI.Playlists.EditPlaylist(playlistID, moveItem: (playlist.Tracks[4].SetVideoID, playlist.Tracks[3].SetVideoID)));
+            runTest(() => status = YTMAPI.Playlists.EditPlaylist(playlistID, moveItem: (playlist.Tracks[4].UniqueID, playlist.Tracks[3].UniqueID)));
             outputTestStart("Playlists.EditPlaylist_Move Return");
             outputTestResults(status, YTMAPI.Playlists.StatusSucceeded);
             Application.DoEvents();
@@ -320,7 +320,7 @@ namespace YTMDotNet.Forms {
             runTest(() => YTMAPI.Uploads.GetLibraryUploadTracks());
             Application.DoEvents();
 
-            List<YTMAPI.Models.LibraryArtist> artists = null;
+            List<YTMAPI.Models.ArtistBasic> artists = null;
             outputTestStart("Uploads.GetLibraryUploadArtists");
             runTest(() => artists = YTMAPI.Uploads.GetLibraryUploadArtists());
             Application.DoEvents();
@@ -332,7 +332,7 @@ namespace YTMDotNet.Forms {
                 rtxtLog.AppendText("[Skipped]", defaultTextColor, true);
             Application.DoEvents();
 
-            List<YTMAPI.Models.LibraryAlbum> albums = null;
+            List<YTMAPI.Models.AlbumBasic> albums = null;
             outputTestStart("Uploads.GetLibraryUploadAlbums");
             runTest(() => albums = YTMAPI.Uploads.GetLibraryUploadAlbums());
             Application.DoEvents();

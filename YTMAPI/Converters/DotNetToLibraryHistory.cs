@@ -4,11 +4,11 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToLibraryHistory {
-        public static List<HistoryTrack> Get(IEnumerable<Dictionary<string, object>> input) =>
+        public static List<Track_History> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetTrack).ToList();
 
-        private static HistoryTrack GetTrack(Dictionary<string, object> input) =>
-            new HistoryTrack {
+        private static Track_History GetTrack(Dictionary<string, object> input) =>
+            new Track_History() {
                 BrowseID = input["videoId"] as string,
                 Title = input["title"] as string,
                 Artists = DotNetToGeneral.GetSimpleItems(input["artists"] as List<object>),

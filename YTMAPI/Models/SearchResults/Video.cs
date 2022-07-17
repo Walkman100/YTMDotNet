@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models.SearchResults {
     class Video : SearchResult {
-        public Video() => ItemType = ItemType.Video;
+        public Video() => ItemType = SearchResultType.Video;
 
         public string Duration;
         public int? Year;

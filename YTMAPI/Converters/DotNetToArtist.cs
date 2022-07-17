@@ -29,9 +29,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Related = GetRelated((input["related"] as Dictionary<string, object>)["results"] as List<object>)
             };
 
-        private static List<ArtistTrack> GetTracks(List<object> input) =>
+        private static List<Track> GetTracks(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new ArtistTrack() {
+                dict => new Track() {
                     Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
                     IsAvailable = (bool)dict["isAvailable"],
@@ -42,26 +42,26 @@ namespace YTMDotNet.YTMAPI.Converters {
                     Artists = DotNetToGeneral.GetSimpleItems(dict["artists"] as List<object>),
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>),
                 }).ToList();
-        private static List<ArtistVideo> GetVideos(List<object> input) =>
+        private static List<Video> GetVideos(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new ArtistVideo() {
+                dict => new Video() {
                     Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
                     PlaylistID = dict["playlistId"] as string,
                     Views = dict["views"] as string,
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>)
                 }).ToList();
-        private static List<ArtistMiniAlbum> GetAlbums(List<object> input) =>
+        private static List<AlbumMini> GetAlbums(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new ArtistMiniAlbum() {
+                dict => new AlbumMini() {
                     Title = dict["title"] as string,
                     BrowseID = dict["browseId"] as string,
                     Year = dict["year"] as int?,
                     Thumbnails = DotNetToGeneral.GetThumbnails(dict["thumbnails"] as List<object>)
                 }).ToList();
-        private static List<ArtistSingle> GetSingles(List<object> input) =>
+        private static List<AlbumMini> GetSingles(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new ArtistSingle() {
+                dict => new AlbumMini() {
                     Title = dict["title"] as string,
                     BrowseID = dict["browseId"] as string,
                     Year = dict["year"] as int?,

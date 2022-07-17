@@ -15,9 +15,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 Playlists = GetPlaylists((input.GetValue("playlists") as Dictionary<string, object>)?.GetValue("results") as List<object>)
             };
 
-        private static List<UserVideo> GetVideos(List<object> input) =>
+        private static List<Video> GetVideos(List<object> input) =>
             input?.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new UserVideo() {
+                dict => new Video() {
                     Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
                     PlaylistID = dict["playlistId"] as string,

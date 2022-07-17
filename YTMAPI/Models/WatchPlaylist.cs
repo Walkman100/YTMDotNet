@@ -5,16 +5,6 @@ namespace YTMDotNet.YTMAPI.Models {
         public string PlaylistID;
         public string LyricsID;
 
-        public List<WatchTrack> Tracks;
-    }
-
-    class WatchTrack : Item {
-        public string Length;
-        public int? Year;
-        public LikeStatus LikeStatus;
-        public List<ItemBasic> Artists;
-        public string AlbumName;
-        public string AlbumID;
-        public string Views;
+        public List<Track_WatchPlaylist> Tracks;
     }
 }

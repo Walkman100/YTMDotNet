@@ -8,7 +8,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Retrieves the playlists in the user's library.</summary>
         /// <param name="limit">Number of playlists to retrieve</param>
         /// <returns></returns>
-        public static List<LibraryPlaylist> GetPlaylists(int limit = 25) {
+        public static List<PlaylistBasic> GetPlaylists(int limit = 25) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_playlists(limit);
@@ -23,7 +23,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="validate_responses">Flag indicating if responses from YTM should be validated and retried in case when some songs are missing.</param>
         /// <param name="order">Order of songs to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryTrack> GetTracks(int limit = 25, bool validate_responses = false, Order order = Order.Default) {
+        public static List<Track> GetTracks(int limit = 25, bool validate_responses = false, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_songs(limit, validate_responses, Converters.Helpers.OrderToString(order));
@@ -37,7 +37,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="limit">Number of artists to return</param>
         /// <param name="order">Order of artists to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryArtist> GetArtists(int limit = 25, Order order = Order.Default) {
+        public static List<ArtistBasic> GetArtists(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_artists(limit, Converters.Helpers.OrderToString(order));
@@ -47,7 +47,7 @@ namespace YTMDotNet.YTMAPI {
         }
 
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_library_subscriptions
-        public static List<LibraryArtist> GetSubscriptions(int limit = 25, Order order = Order.Default) {
+        public static List<ArtistBasic> GetSubscriptions(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_subscriptions(limit, Converters.Helpers.OrderToString(order));
@@ -61,7 +61,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="limit">Number of albums to return</param>
         /// <param name="order">Order of albums to return. Allowed values: 'a_to_z', 'z_to_a', 'recently_added'. Default: Default order.</param>
         /// <returns></returns>
-        public static List<LibraryAlbum> GetAlbums(int limit = 25, Order order = Order.Default) {
+        public static List<AlbumBasic> GetAlbums(int limit = 25, Order order = Order.Default) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_library_albums(limit, Converters.Helpers.OrderToString(order));
@@ -86,7 +86,7 @@ namespace YTMDotNet.YTMAPI {
         //https://ytmusicapi.readthedocs.io/en/latest/reference.html#ytmusicapi.YTMusic.get_history
         /// <summary>Gets your play history in reverse chronological order</summary>
         /// <returns></returns>
-        public static List<HistoryTrack> GetHistory() {
+        public static List<Track_History> GetHistory() {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_history();

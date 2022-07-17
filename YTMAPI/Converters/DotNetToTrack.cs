@@ -4,8 +4,8 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToTrack {
-        public static Track Get(Dictionary<string, object> input) =>
-            new Track() {
+        public static WatchTrack Get(Dictionary<string, object> input) =>
+            new WatchTrack() {
                 PlayabilityStatus = GetPlayabilityStatus(input["playabilityStatus"] as Dictionary<string, object>),
                 StreamingData = GetStreamingData(input["streamingData"] as Dictionary<string, object>),
                 VideoDetails = GetVideoDetails(input["videoDetails"] as Dictionary<string, object>),
@@ -13,12 +13,12 @@ namespace YTMDotNet.YTMAPI.Converters {
             };
 
 
-        private static TrackPlayabilityStatus GetPlayabilityStatus(Dictionary<string, object> input) {
+        private static WatchTrackPlayabilityStatus GetPlayabilityStatus(Dictionary<string, object> input) {
             var AOPR =
                 (input["audioOnlyPlayability"] as Dictionary<string, object>)
                 ["audioOnlyPlayabilityRenderer"] as Dictionary<string, object>;
 
-            return new TrackPlayabilityStatus() {
+            return new WatchTrackPlayabilityStatus() {
                 Status = input["status"] as string,
                 PlayableInEmbed = (bool)input["playableInEmbed"],
                 AudioOnlyPlayabilityRenderer_TrackingParams = AOPR["trackingParams"] as string,
@@ -31,15 +31,15 @@ namespace YTMDotNet.YTMAPI.Converters {
             };
         }
 
-        private static TrackStreamingData GetStreamingData(Dictionary<string, object> input) =>
-            new TrackStreamingData() {
+        private static WatchTrackStreamingData GetStreamingData(Dictionary<string, object> input) =>
+            new WatchTrackStreamingData() {
                 ExpiresInSeconds = input["expiresInSeconds"] as string,
                 Formats = GetStreamingDataFormats(input["formats"] as List<object>),
                 AdaptiveFormats = GetStreamingDataAdaptiveFormats(input["adaptiveFormats"] as List<object>)
             };
-        private static List<TrackFormat> GetStreamingDataFormats(List<object> input) =>
+        private static List<WatchTrackFormat> GetStreamingDataFormats(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new TrackFormat() {
+                dict => new WatchTrackFormat() {
                     ITag = (int)dict["itag"],
                     MimeType = dict["mimeType"] as string,
                     Bitrate = (int)dict["bitrate"],
@@ -58,9 +58,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                     AudioChannels = (int)dict["audioChannels"],
                     SignatureCipher = dict["signatureCipher"] as string
                 }).ToList();
-        private static List<TrackFormat> GetStreamingDataAdaptiveFormats(List<object> input) =>
+        private static List<WatchTrackFormat> GetStreamingDataAdaptiveFormats(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new TrackFormat {
+                dict => new WatchTrackFormat {
                     ITag = (int)dict["itag"],
                     MimeType = dict["mimeType"] as string,
                     Bitrate = (int)dict["bitrate"],
@@ -85,8 +85,8 @@ namespace YTMDotNet.YTMAPI.Converters {
                     SignatureCipher = dict["signatureCipher"] as string
                 }).ToList();
 
-        private static TrackVideoDetails GetVideoDetails(Dictionary<string, object> input) =>
-            new TrackVideoDetails() {
+        private static WatchTrackVideoDetails GetVideoDetails(Dictionary<string, object> input) =>
+            new WatchTrackVideoDetails() {
                 BrowseID = input["videoId"] as string,
                 Title = input["title"] as string,
                 LengthSeconds = input["lengthSeconds"] as string,
@@ -106,11 +106,11 @@ namespace YTMDotNet.YTMAPI.Converters {
                 IsLiveContent = (bool)input["isLiveContent"]
             };
 
-        private static TrackMicroformatDataRenderer GetMicroformat(Dictionary<string, object> input) {
+        private static WatchTrackMicroformatDataRenderer GetMicroformat(Dictionary<string, object> input) {
             var MFDR = input["microformatDataRenderer"] as Dictionary<string, object>;
             var MFDR_POD = MFDR["pageOwnerDetails"] as Dictionary<string, object>;
             var MFDR_VD = MFDR["videoDetails"] as Dictionary<string, object>;
-            return new TrackMicroformatDataRenderer {
+            return new WatchTrackMicroformatDataRenderer {
                 URLCanonical = MFDR["urlCanonical"] as string,
                 Title = MFDR["title"] as string,
                 Description = MFDR["description"] as string,
@@ -149,9 +149,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 UploadDate = System.DateTime.Parse(MFDR["uploadDate"] as string)
             };
         }
-        private static List<TrackLinkAlternates> GetLinkAlternates(List<object> input) =>
+        private static List<WatchTrackLinkAlternates> GetLinkAlternates(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new TrackLinkAlternates() {
+                dict => new WatchTrackLinkAlternates() {
                     HREF_URL = dict["hrefUrl"] as string,
                     Title = dict.GetValue("title") as string,
                     AlternateType = dict.GetValue("alternateType") as string

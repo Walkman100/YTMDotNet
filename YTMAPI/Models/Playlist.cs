@@ -1,25 +1,17 @@
 using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models {
-    class Playlist : Item {
-        public string Privacy;
-        public string Description;
-        public ItemBasic Author;
-        public string Duration;
-        public int TrackCount;
-        public string SuggestionsToken;
-        public List<PlaylistTrack> Tracks;
+    class PlaylistBasic : Item {
+        public int? TrackCount;
     }
 
-    class PlaylistTrack : ItemWithTokens {
-        public bool IsAvailable;
-        public bool IsExplicit;
+    class Playlist : PlaylistBasic {
+        public PrivacyStatus? Privacy;
+        public string Description;
         public string Duration;
-        public string SetVideoID;
-        public LikeStatus LikeStatus;
+        public string SuggestionsToken;
 
-        public string AlbumName;
-        public string AlbumID;
-        public List<ItemBasic> Artists;
+        public ItemBasic Author;
+        public List<Track> Tracks;
     }
 }

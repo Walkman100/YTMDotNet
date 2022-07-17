@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models.SearchResults {
     class Track : SearchResult {
-        public Track() => ItemType = ItemType.Track;
+        public Track() => ItemType = SearchResultType.Track;
 
         public string Duration;
         public int? Year;

@@ -11,9 +11,9 @@ namespace YTMDotNet.YTMAPI.Converters {
                 LyricsID = input["lyrics"] as string
             };
 
-        private static List<WatchTrack> GetTracks(List<object> input) =>
+        private static List<Track_WatchPlaylist> GetTracks(List<object> input) =>
             input.Select(obj => obj as Dictionary<string, object>).Select(
-                dict => new WatchTrack() {
+                dict => new Track_WatchPlaylist() {
                     Title = dict["title"] as string,
                     BrowseID = dict["videoId"] as string,
                     Length = dict["length"] as string,

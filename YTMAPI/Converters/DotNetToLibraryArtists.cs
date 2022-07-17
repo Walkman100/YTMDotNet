@@ -4,11 +4,11 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     class DotNetToLibraryArtists {
-        public static List<LibraryArtist> Get(IEnumerable<Dictionary<string, object>> input) =>
+        public static List<ArtistBasic> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetArtist).ToList();
 
-        private static LibraryArtist GetArtist(Dictionary<string, object> input) =>
-            new LibraryArtist() {
+        private static ArtistBasic GetArtist(Dictionary<string, object> input) =>
+            new ArtistBasic() {
                 BrowseID = input["browseId"] as string,
                 Title = input["artist"] as string,
                 ShuffleID = input["shuffleId"] as string,

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models.SearchResults {
     class Album : SearchResult {
-        public Album() => ItemType = ItemType.Album;
+        public Album() => ItemType = SearchResultType.Album;
 
         public AlbumType Type;
         public string Duration;

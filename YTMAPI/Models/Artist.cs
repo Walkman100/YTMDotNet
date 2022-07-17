@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models {
-    class Artist : Item {
-        public string Description;
-        public string Views;
+    class ArtistBasic : Item {
         public string Subscribers;
-        public bool Subscribed;
-
         public string ShuffleID;
         public string RadioID;
+    }
+
+    class Artist : ArtistBasic {
+        public string Description;
+        public string Views;
+        public bool Subscribed;
 
         public string TrackBrowseID;
         public string VideoBrowseID;
@@ -18,34 +20,13 @@ namespace YTMDotNet.YTMAPI.Models {
         public string SinglesBrowseID;
         public string SinglesParams;
 
-        public List<ArtistTrack> Tracks;
-        public List<ArtistVideo> Videos;
-        public List<ArtistMiniAlbum> Albums;
-        public List<ArtistSingle> Singles;
+        public List<Track> Tracks;
+        public List<Video> Videos;
+        public List<AlbumMini> Albums;
+        public List<AlbumMini> Singles;
         public List<ArtistRelated> Related;
     }
 
-    class ArtistTrack : Item {
-        public bool IsExplicit;
-        public bool IsAvailable;
-        public LikeStatus LikeStatus;
-
-        public string AlbumName;
-        public string AlbumID;
-        public List<ItemBasic> Artists;
-
-    }
-    class ArtistVideo : Item {
-        public string Views;
-
-        public string PlaylistID;
-    }
-    class ArtistMiniAlbum : Item {
-        public int? Year;
-    }
-    class ArtistSingle : Item {
-        public int? Year;
-    }
     class ArtistRelated : Item {
         public string Subscribers;
     }

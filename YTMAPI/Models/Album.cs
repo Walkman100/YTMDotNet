@@ -1,23 +1,21 @@
 using System.Collections.Generic;
 
 namespace YTMDotNet.YTMAPI.Models {
-    class Album : Item {
-        public string Type;
-        public string Description;
-        public string Year;
-        public int TrackCount;
-        public string Duration;
-
-        public List<ItemBasic> Artists;
-        public List<AlbumTrack> Tracks;
+    class AlbumMini : Item {
+        public int? Year;
     }
 
-    class AlbumTrack : ItemWithTokens {
-        public List<ItemBasic> Artists;
-        public string Album;
-        public LikeStatus LikeStatus;
-        public bool IsAvailable;
-        public bool IsExplicit;
+    class AlbumBasic : AlbumMini {
+        public AlbumType? Type;
+        public int? TrackCount;
         public string Duration;
+
+        public List<ItemBasic> Artists;
+    }
+
+    class AlbumFull : AlbumBasic {
+        public string Description;
+
+        public List<Track> Tracks;
     }
 }

@@ -4,11 +4,11 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     static class DotNetToArtistAlbums {
-        public static List<ArtistAlbum> Get(IEnumerable<Dictionary<string, object>> input) =>
+        public static List<AlbumBasic> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetAlbum).ToList();
 
-        private static ArtistAlbum GetAlbum(Dictionary<string, object> input) =>
-            new ArtistAlbum() {
+        private static AlbumBasic GetAlbum(Dictionary<string, object> input) =>
+            new AlbumBasic() {
                 Title = input["title"] as string,
                 BrowseID = input["browseId"] as string,
                 Type = Helpers.EnumParse<AlbumType>(input["type"] as string),

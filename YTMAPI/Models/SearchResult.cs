@@ -1,9 +1,9 @@
 namespace YTMDotNet.YTMAPI.Models {
     class SearchResult : Item {
-        public ItemType ItemType;
+        public SearchResultType ItemType;
     }
 
-    enum ItemType {
+    enum SearchResultType {
         None,
         Track,
         Video,

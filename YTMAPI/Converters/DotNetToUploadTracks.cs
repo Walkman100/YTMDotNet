@@ -4,12 +4,12 @@ using YTMDotNet.YTMAPI.Models;
 
 namespace YTMDotNet.YTMAPI.Converters {
     class DotNetToUploadTracks {
-        public static List<UploadTrack> Get(IEnumerable<Dictionary<string, object>> input) =>
+        public static List<Track> Get(IEnumerable<Dictionary<string, object>> input) =>
             input.Select(GetTrack).ToList();
 
-        private static UploadTrack GetTrack(Dictionary<string, object> input) =>
-            new UploadTrack() {
-                EntityID = input["entityId"] as string,
+        private static Track GetTrack(Dictionary<string, object> input) =>
+            new Track() {
+                UniqueID = input["entityId"] as string,
                 BrowseID = input["videoId"] as string,
                 Title = input["title"] as string,
                 Duration = input["duration"] as string,

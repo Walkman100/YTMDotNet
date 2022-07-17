@@ -26,7 +26,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="channelID">channel Id of the artist</param>
         /// <param name="_params">params obtained by get_artist()</param>
         /// <returns></returns>
-        public static List<ArtistAlbum> GetArtistAlbums(string channelID, string _params) {
+        public static List<AlbumBasic> GetArtistAlbums(string channelID, string _params) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_artist_albums(channelID, _params);
@@ -66,7 +66,7 @@ namespace YTMDotNet.YTMAPI {
         /// <summary>Get information and tracks of an album</summary>
         /// <param name="browseID">browseId of the album, for example returned by search()</param>
         /// <returns></returns>
-        public static Album GetAlbum(string browseID) {
+        public static AlbumFull GetAlbum(string browseID) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 get_results = YTM.API.get_album(browseID);
@@ -80,7 +80,7 @@ namespace YTMDotNet.YTMAPI {
         /// <param name="videoID">Video id</param>
         /// <param name="signatureTimestamp">Provide the current YouTube signatureTimestamp. If not provided a default value will be used, which might result in invalid streaming URLs</param>
         /// <returns></returns>
-        public static Track GetTrack(string videoID, int signatureTimestamp = 0) {
+        public static WatchTrack GetTrack(string videoID, int signatureTimestamp = 0) {
             dynamic get_results;
             using (var YTM = new PyYTMAPI()) {
                 if (signatureTimestamp == 0)

@@ -6,12 +6,7 @@ namespace YTMDotNet.YTMAPI.Models {
         public string PlaylistBrowseID;
         public string PlaylistParams;
 
-        public List<UserVideo> Videos;
+        public List<Video> Videos;
         public List<Item> Playlists;
-    }
-
-    class UserVideo : Item {
-        public string PlaylistID;
-        public string Views;
     }
 }
