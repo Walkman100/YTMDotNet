@@ -23,8 +23,8 @@ namespace YTMDotNet.YTMAPI.Converters {
         private static Models.SearchResults.Track GetTrack(Dictionary<string, object> input) =>
             new Models.SearchResults.Track() {
                 Title = input["title"] as string,
-                AlbumName = (input["album"] as Dictionary<string, object>)["name"] as string,
-                AlbumID = (input["album"] as Dictionary<string, object>)["id"] as string,
+                AlbumName = (input["album"] as Dictionary<string, object>)?["name"] as string,
+                AlbumID = (input["album"] as Dictionary<string, object>)?["id"] as string,
                 BrowseID = input["videoId"] as string,
                 Duration = input["duration"] as string,
                 Year = input["year"] as int?,
