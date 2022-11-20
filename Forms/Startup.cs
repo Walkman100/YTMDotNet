@@ -55,8 +55,8 @@ namespace YTMDotNet.Forms {
                         return;
 
                     case "Show Full Error":
-                        WalkmanLib.ErrorDialog(ex, showMsgBox: false);
-                        //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                        WalkmanLib.ErrorDialog(ex, showMsgBox: false, showErrorBlockingWindow: true);
+                        Application.Exit();
                         return;
 
                     case "Cancel":
@@ -73,7 +73,7 @@ namespace YTMDotNet.Forms {
                     string pythonInstallFolder = Path.GetDirectoryName(Helpers.Settings.PythonDLL);
 
                     switch (WalkmanLib.CustomMsgBox($"YTM API module not found in Python install{Environment.NewLine}\"{pythonInstallFolder}\"!",
-                                                                        "YTM API Initialization Error", null, "Install", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
+                                                    "YTM API Initialization Error", null, "Install", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
                         case "Install":
                             InstallYTMAPI(pythonInstallFolder);
                             continue;
@@ -82,8 +82,8 @@ namespace YTMDotNet.Forms {
                             return;
                     }
                 } catch (Exception ex) {
-                    WalkmanLib.ErrorDialog(ex);
-                    //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                    WalkmanLib.ErrorDialog(ex, showErrorBlockingWindow: true);
+                    Application.Exit();
                     return;
                 }
                 break;
@@ -107,11 +107,11 @@ namespace YTMDotNet.Forms {
                     try {
                         YTMASetup(inputDialog.Input);
                     } catch (PythonException ex) {
-                        WalkmanLib.ErrorDialog(ex);
+                        WalkmanLib.ErrorDialog(ex, showErrorBlockingWindow: true);
                         continue;
                     } catch (Exception ex) {
-                        WalkmanLib.ErrorDialog(ex);
-                        //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                        WalkmanLib.ErrorDialog(ex, showErrorBlockingWindow: true);
+                        Application.Exit();
                         return;
                     }
                 }
@@ -129,8 +129,8 @@ namespace YTMDotNet.Forms {
                             continue;
 
                         case "Show Full Error":
-                            WalkmanLib.ErrorDialog(ex, showMsgBox: false);
-                            //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                            WalkmanLib.ErrorDialog(ex, showMsgBox: false, showErrorBlockingWindow: true);
+                            Application.Exit();
                             return;
 
                         case "Cancel":
@@ -138,8 +138,8 @@ namespace YTMDotNet.Forms {
                             return;
                     }
                 } catch (Exception ex) {
-                    WalkmanLib.ErrorDialog(ex);
-                    //Application.Exit(); // WalkmanLib.ErrorDialog is Async...
+                    WalkmanLib.ErrorDialog(ex, showErrorBlockingWindow: true);
+                    Application.Exit();
                     return;
                 }
                 break;
