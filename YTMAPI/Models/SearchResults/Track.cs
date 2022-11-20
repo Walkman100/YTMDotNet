@@ -5,6 +5,7 @@ namespace YTMDotNet.YTMAPI.Models.SearchResults {
         public Track() => ItemType = SearchResultType.Track;
 
         public string Duration;
+        public int DurationSeconds;
         public int? Year;
         public bool IsExplicit;
 

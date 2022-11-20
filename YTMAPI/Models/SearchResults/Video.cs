@@ -5,6 +5,7 @@ namespace YTMDotNet.YTMAPI.Models.SearchResults {
         public Video() => ItemType = SearchResultType.Video;
 
         public string Duration;
+        public int DurationSeconds;
         public int? Year;
         public string Views;
 
