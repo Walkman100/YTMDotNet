@@ -7,8 +7,9 @@ namespace YTMDotNet.YTMAPI {
         public const string YTMAPIModuleName = "ytmusicapi";
 
         private readonly Py.GILState state;
-        public readonly dynamic API;
         private bool isDisposed;
+
+        public readonly dynamic API;
 
         internal PyYTMAPI() {
             state = Py.GIL();
