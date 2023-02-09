@@ -131,6 +131,7 @@
     <Compile Include="WalkmanLib\WalkmanLibDotNet.cs" />
     <Compile Include="WalkmanLib\WalkmanLibExtensions.cs" />
     <Compile Include="WalkmanLib\WalkmanLibTheming.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibThemingMsgBox.cs" />
     <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
     <Compile Include="WalkmanLib\CustomMsgBox.cs">
       <SubType>Form</SubType>

@@ -7,12 +7,14 @@ using Python.Runtime;
 
 namespace YTMDotNet.Forms {
     public partial class Startup : Form {
+        private readonly WalkmanLib.Theme theme;
         public Startup() {
             InitializeComponent();
-            WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, this);
+            theme = WalkmanLib.Theme.Dark;
+            WalkmanLib.ApplyTheme(theme, this);
             if (this.components != null)
-                WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, this.components.Components);
-            ToolStripManager.Renderer = new WalkmanLib.CustomPaint.ToolStripSystemRendererWithDisabled(WalkmanLib.Theme.Dark.ToolStripItemDisabledText);
+                WalkmanLib.ApplyTheme(theme, this.components.Components);
+            ToolStripManager.Renderer = new WalkmanLib.CustomPaint.ToolStripSystemRendererWithDisabled(theme.ToolStripItemDisabledText);
         }
 
         private CancellationTokenSource loadingTextUpdateCancel;
@@ -48,7 +50,7 @@ namespace YTMDotNet.Forms {
                 chkPythonInstall.Checked = true;
             } catch (Exception ex) {
                 switch (WalkmanLib.CustomMsgBox($"Error Loading Python!{Environment.NewLine}{Environment.NewLine}{ex.Message}{Environment.NewLine}{Environment.NewLine}Selecting a new path requires a restart.",
-                                                "Python Initialization Error", "Restart Application", "Show Full Error", "Cancel", MessageBoxIcon.Error, ownerForm: this)) {
+                                                theme, "Python Initialization Error", "Restart Application", "Show Full Error", "Cancel", MessageBoxIcon.Error, ownerForm: this)) {
                     case "Restart Application":
                         Helpers.Settings.PythonDLL = null; // reset path & save so it can be selected on next startup
                         Application.Restart();
@@ -73,7 +75,7 @@ namespace YTMDotNet.Forms {
                     string pythonInstallFolder = Path.GetDirectoryName(Helpers.Settings.PythonDLL);
 
                     switch (WalkmanLib.CustomMsgBox($"YTM API module not found in Python install{Environment.NewLine}\"{pythonInstallFolder}\"!",
-                                                    "YTM API Initialization Error", null, "Install", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
+                                                    theme, "YTM API Initialization Error", null, "Install", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
                         case "Install":
                             InstallYTMAPI(pythonInstallFolder);
                             continue;
@@ -97,7 +99,7 @@ namespace YTMDotNet.Forms {
                         Content = "See ytmusicapi.readthedocs.io/en/latest/setup.html"
                     };
                     inputDialog.SetContentLink(4, 999, "https://ytmusicapi.readthedocs.io/en/latest/setup.html");
-                    WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, inputDialog);
+                    WalkmanLib.ApplyTheme(theme, inputDialog);
 
                     if (inputDialog.ShowDialog() == DialogResult.Cancel) {
                         Application.Exit();
@@ -122,7 +124,7 @@ namespace YTMDotNet.Forms {
                     chkLogIn.Checked = true;
                 } catch (PythonException ex) {
                     switch (WalkmanLib.CustomMsgBox($"Login Failed!{Environment.NewLine}{Environment.NewLine}{ex.Message}",
-                                                    "YTM API Login Error", "Try New Headers", "Show Full Error", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
+                                                    theme, "YTM API Login Error", "Try New Headers", "Show Full Error", "Cancel", MessageBoxIcon.Warning, ownerForm: this)) {
                         case "Try New Headers":
                             File.WriteAllText(Helpers.Settings.HeadersPath, "");
                             chkLogInConfig.Checked = false;
