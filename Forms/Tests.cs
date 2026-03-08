@@ -5,12 +5,15 @@ using System.Windows.Forms;
 
 namespace YTMDotNet.Forms {
     public partial class Tests : Form {
-        public Tests() {
+        public Tests(WalkmanLib.Theme theme) {
             InitializeComponent();
-            WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, this);
+
+            WalkmanLib.InitCustomRenderers(this.Controls);
+            WalkmanLib.ApplyThemeRenderer(theme, this.Controls);
+            WalkmanLib.ApplyTheme(theme, this);
             if (this.components != null)
-                WalkmanLib.ApplyTheme(WalkmanLib.Theme.Dark, this.components.Components);
-            ToolStripManager.Renderer = new WalkmanLib.CustomPaint.ToolStripSystemRendererWithDisabled(WalkmanLib.Theme.Dark.ToolStripItemDisabledText);
+                WalkmanLib.ApplyTheme(theme, this.components.Components);
+            defaultTextColor = theme.TextBoxFG;
 
             foreach (var item in WalkmanLibExtensions.GetValues<OneSelectionTests>()) {
                 cbxTestSelect.Items.Add(item);
@@ -19,7 +22,7 @@ namespace YTMDotNet.Forms {
 
         private void btnClose_Click(object _, EventArgs __) => this.Close();
 
-        private static readonly Color defaultTextColor = WalkmanLib.Theme.Dark.TextBoxFG;
+        private readonly Color defaultTextColor;
         private void outputTestStart(string testName) {
             rtxtLog.AppendText("[", defaultTextColor);
             rtxtLog.AppendText(DateTime.Now.ToString(), Color.White);

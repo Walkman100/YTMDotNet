@@ -127,12 +127,20 @@
     <Compile Include="YTMAPI\Models\SearchResults\Video.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WalkmanLib\NativeErrorCodes.cs" />
     <Compile Include="WalkmanLib\WalkmanLibArgHandler.cs" />
     <Compile Include="WalkmanLib\WalkmanLibDotNet.cs" />
     <Compile Include="WalkmanLib\WalkmanLibExtensions.cs" />
     <Compile Include="WalkmanLib\WalkmanLibTheming.cs" />
     <Compile Include="WalkmanLib\WalkmanLibThemingMsgBox.cs" />
     <Compile Include="WalkmanLib\WalkmanLibUpdates.cs" />
+    <Compile Include="WalkmanLib\WalkmanLibWin32.cs" />
+    <Compile Include="WalkmanLib\CustomInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WalkmanLib\CustomInputDialog.Designer.cs">
+      <DependentUpon>CustomInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="WalkmanLib\CustomMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,6 +1,7 @@
 [submodule "WalkmanLib"]
 	path = WalkmanLib
 	url = https://github.com/Walkman100/WalkmanLib
+	branch = c-sharp
 [submodule "Ookii.Dialogs"]
 	path = Ookii.Dialogs
 	url = https://github.com/Walkman100/Ookii.Dialogs

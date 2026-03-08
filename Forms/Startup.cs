@@ -10,11 +10,15 @@ namespace YTMDotNet.Forms {
         private readonly WalkmanLib.Theme theme;
         public Startup() {
             InitializeComponent();
-            theme = WalkmanLib.Theme.Dark;
+            if (WalkmanLib.GetDarkThemeEnabled() ?? false)
+                theme = WalkmanLib.Theme.Dark;
+
+            WalkmanLib.SetPreferredAppMode(theme.SystemAppMode);
+            WalkmanLib.InitCustomRenderers(this.Controls);
+            WalkmanLib.ApplyThemeRenderer(theme, this.Controls);
             WalkmanLib.ApplyTheme(theme, this);
             if (this.components != null)
                 WalkmanLib.ApplyTheme(theme, this.components.Components);
-            ToolStripManager.Renderer = new WalkmanLib.CustomPaint.ToolStripSystemRendererWithDisabled(theme.ToolStripItemDisabledText);
         }
 
         private CancellationTokenSource loadingTextUpdateCancel;
@@ -151,11 +155,11 @@ namespace YTMDotNet.Forms {
             Application.DoEvents();
             lblLoading.Text = "Switching Windows...";
 
-            new Tests().Show();
+            new Tests(theme).Show();
         }
 
         private string GetPythonInstall() {
-            OpenFileDialog selectPythonDLL = new() {
+            var selectPythonDLL = new OpenFileDialog() {
                 Title = "Select Python DLL",
                 Filter = "Python DLL|*.dll",
                 FileName = "python39.dll",
