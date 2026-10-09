@@ -162,7 +162,7 @@ namespace YTMDotNet.Forms {
             var selectPythonDLL = new OpenFileDialog() {
                 Title = "Select Python DLL",
                 Filter = "Python DLL|*.dll",
-                FileName = "python39.dll",
+                FileName = "python314.dll",
                 AddExtension = false,
             };
 
@@ -190,8 +190,7 @@ namespace YTMDotNet.Forms {
 
             using (Py.GIL()) {
                 dynamic YTMusicAPI = Py.Import(YTMAPI.PyYTMAPI.YTMAPIModuleName);
-                dynamic YTMusic = YTMusicAPI.YTMusic;
-                YTMusic.setup(filepath: Helpers.Settings.HeadersPath, headers_raw: headersInput);
+                YTMusicAPI.setup(filepath: Helpers.Settings.HeadersPath, headers_raw: headersInput);
             }
         }
         private void YTMALoginCheck() {
