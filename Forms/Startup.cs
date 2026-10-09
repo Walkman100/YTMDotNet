@@ -61,7 +61,7 @@ namespace YTMDotNet.Forms {
                         return;
 
                     case "Show Full Error":
-                        WalkmanLib.ErrorDialog(ex, showMsgBox: false, showErrorBlockingWindow: true);
+                        WalkmanLib.ErrorDialog(ex, theme, showMsgBox: false, showErrorBlockingWindow: true);
                         Application.Exit();
                         return;
 
@@ -182,7 +182,7 @@ namespace YTMDotNet.Forms {
         private void InstallYTMAPI(string pythonInstallFolder) {
             string pipPath = Path.Combine(pythonInstallFolder, "Scripts", "pip.exe");
             System.Diagnostics.Process.Start("cmd.exe", $"/c \"{pipPath}\" install {YTMAPI.PyYTMAPI.YTMAPIModuleName} & pause");
-            MessageBox.Show("Select OK when install is complete", "Installing YTM API", MessageBoxButtons.OK);
+            WalkmanLib.CustomMsgBox("Select OK when install is complete", theme, "Installing YTM API", MessageBoxButtons.OK, ownerForm: this);
         }
 
         private void YTMASetup(string headersInput) {
